@@ -1,7 +1,4 @@
-// Este es el punto de entrada de tu aplicacion
-
-/*import { myFunction } from './lib/index.js';
-
-myFunction();*/
+//import firebaseConfig from './firebase-init.js'
+import { home } from './home/home.view.js'
 console.log('holi')
 
