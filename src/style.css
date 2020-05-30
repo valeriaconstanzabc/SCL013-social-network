@@ -1,0 +1,75 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+#container{ /*Poner el fondo aquí*/
+    background: yellowgreen;
+}
+
+#header{
+    background: rgb(207, 242, 243);
+    display: flex;
+    padding: 4px;
+    margin: 10px 0px 0px 0px;
+}
+    /*#headerLogo{
+        
+    }*/
+        #logoHeader{
+            height: 50px;
+            padding-left: 7px;
+        }
+    /*#divLogInButton{
+        
+    }
+        #logInButton{
+            
+        }*/
+
+#main{
+    background: yellow;
+    height: 40px;
+}
+
+#footer{
+    background: rgb(207, 242, 243);
+    display: flex;
+    padding: 4px;
+    margin: 0px 0px 10px 0px;
+    justify-content: center;
+    align-items: center;
+                
+}
+    #logoFooter{
+        height: 50px;
+        padding-left: 5px;
+        padding-right: 5px;
+        display: flex;
+        flex-direction: row;
+        /*background: hotpink;*/
+    }
+        #imgFooter{
+            height: 50px;
+        }
+
+    #copyright{
+        color: #24255E;
+        font-family: 'Comfortaa', cursive;
+        font-size: 10px;
+        /*background: #7879;*/
+    }
+    .social-media{
+        height: 50px;
+        display: flex;
+        align-items: center;
+        margin: 2px;
+        padding-left: 3px;
+        /*background: indianred;*/
+    }
+        #socialMedia1, #socialMedia2, #socialMedia3 {
+            height: 25px;
+        }
+        #socialMedia1{
+            padding-left: 50px;
+        }

@@ -1,39 +1,38 @@
-export const viewWelcome = () => { 
-  `<header>
-      <nav> 
-        <div>
-          <a href="http://">
-            <img src="" alt="">
-          </a>
-        </div>
-        <div>
-          <a href="http://">
-            <button>Iniciar Sesión</button>
-          </a> 
-        </div>
-      </nav>
-    </header>
+export const viewWelcome = () => {
+  const divContainer = document.getElementById('container');
+  divContainer.innerHTML += `
+  <header id="header">
+    <nav id="nav"> 
+      <div id="headerLogo">
+        <a href="http://">
+          <img src="imagenes/logo.png" alt="" id="logoHeader">
+        </a>
+      </div>
+      <div id="divLogInButton">
+        <a href="http://">
+          <button id="logInButton">Iniciar Sesión</button>
+        </a> 
+      </div>
+    </nav>
+  </header>
 
-    <footer>
-      <div>
-        <img src="" alt="">
-      </div>
-      <div>
-        <p>© Copyright by Lofche | 2020.</p>
-      </div>
-      <div class="social-media">
-        <img src="" alt="fb">
-      </div>
-      <div class="social-media">
-        <img src="" alt="ig">
-      </div>
-      <div class="social-media">
-        <img src="" alt="tw">
-      </div>
-    </footer>`
-}
+  <main id="main"></main>
 
-const divContainer = document.getElementById('container')
-divContainer.innerHTML += viewWelcome
-
-
+  <footer id="footer">
+    <div id="logoFooter">
+      <img src="imagenes/logo.png" alt="" id="imgFooter">
+    </div>
+    <div id="copyright">
+      <p>© Copyright by Lofche | 2020.</p>
+    </div>
+    <div class="social-media">
+      <img src="imagenes/facebook.png" alt="" id="socialMedia1">
+    </div>
+    <div class="social-media">
+      <img src="imagenes/instagram.png" alt="" id="socialMedia2">
+    </div>
+    <div class="social-media">
+      <img src="imagenes/twitter.png" alt="" id="socialMedia3">
+    </div>
+  </footer>`;
+};
