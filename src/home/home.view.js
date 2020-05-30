@@ -1,6 +1,5 @@
-export home() => {
-    const viewWelcome = /*html*/`
-    <header>
+export const viewWelcome = () => { 
+  `<header>
       <nav> 
         <div>
           <a href="http://">
@@ -32,7 +31,9 @@ export home() => {
         <img src="" alt="tw">
       </div>
     </footer>`
-    
-  const lala = document.getElementById('container')
-  lala.innerHTML += viewWelcome
 }
+
+const divContainer = document.getElementById('container')
+divContainer.innerHTML += viewWelcome
+
+
