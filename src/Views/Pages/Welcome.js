@@ -4,7 +4,7 @@ import { viewFooter } from '../Components/Footer.js';
 export const viewWelcome = () => {
   const pageContainer = document.getElementById('page_container');
   pageContainer.innerHTML = `
-    <div id="main">
+    <div class="main">
       <div>
         <img src="" alt="" id="logoHeader">
       </div>

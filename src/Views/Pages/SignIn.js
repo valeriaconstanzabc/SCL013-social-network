@@ -1,6 +1,7 @@
 export const viewSignIn = () => {
   const viewSignInContainer = document.getElementById('page_container');
-  viewSignInContainer.innerHTML += `
+  viewSignInContainer.innerHTML = `
+  <div class="main">
     <form>
       <div>
         <h1>Iniciar Sesión</h1>
@@ -21,7 +22,8 @@ export const viewSignIn = () => {
           <label><b><u>Regístrate aquí</u></b></label>
         </a>
       </div>
-  </form>`;
+    </form>
+  <div>`;
 
   return viewSignInContainer;
 };
