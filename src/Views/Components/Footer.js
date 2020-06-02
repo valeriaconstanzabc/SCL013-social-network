@@ -1,9 +1,9 @@
 export const viewFooter = () => {
   const footerContainer = document.getElementById('footer_container');
-  footerContainer.innerHTML += `
+  footerContainer.innerHTML = `
     <div id="footer">
       <div id="logoFooter">
-        <img src="imagenes/logo.png" alt="" id="imgFooter">
+        <img src="imagenes/Logo.png" alt="logo-lofche" id="imgFooter">
       </div>
       <div id="copyright">
         <p>© Copyright by Lofche | 2020.</p>
@@ -18,4 +18,6 @@ export const viewFooter = () => {
         <img src="imagenes/twitter.png" alt="" id="socialMedia3">
       </div>
     </div>`;
+
+  return footerContainer;
 };

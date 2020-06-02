@@ -1,6 +1,9 @@
+import { viewHeader } from '../Components/Header.js';
+import { viewFooter } from '../Components/Footer.js';
+
 export const viewWelcome = () => {
   const pageContainer = document.getElementById('page_container');
-  pageContainer.innerHTML += `
+  pageContainer.innerHTML = `
     <div id="main">
       <div>
         <img src="" alt="" id="logoHeader">
@@ -13,4 +16,9 @@ export const viewWelcome = () => {
         almas que viven en ella!</p>
       </div>
     </div>`;
+
+  viewHeader();
+  viewFooter();
+
+  return pageContainer;
 };

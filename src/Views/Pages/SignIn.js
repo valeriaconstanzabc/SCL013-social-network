@@ -21,6 +21,7 @@ export const viewSignIn = () => {
           <label><b><u>Regístrate aquí</u></b></label>
         </a>
       </div>
-  </form>
-      </div>`;
+  </form>`;
+
+  return viewSignInContainer;
 };

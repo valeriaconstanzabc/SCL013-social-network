@@ -33,4 +33,6 @@ export const viewForm = () => {
           </div>    
         </div>
     </form>`;
+
+  return viewSignInContainer;
 };
