@@ -1,6 +1,6 @@
 export const viewSignIn = () => {
   const viewSignInContainer = document.getElementById('page_container');
-  viewSignInContainer.innerHTML += `
+  viewSignInContainer.innerHTML = `
     <form>
         <div>
           <h1>¡Únete a Lofche!</h1>
@@ -20,13 +20,9 @@ export const viewSignIn = () => {
 
           <label><b>También puedes registrarte con:</b></label>
 
-          <a href="http://">
-            <img src="" alt="" class="social-media-logo" id="google">
-          </a>
-
-          <a href="http://">
-            <img src="" alt="" class="social-media-logo" id="facebook">
-          </a>
+          <button type="button" id="btngoogle">
+            <img src="imagenes/google.png" alt="" class="social-media-logo" id="google">
+          </button>
 
           <div class="buttonNext">
             <button type="button" class="siguiente">Siguiente</button>

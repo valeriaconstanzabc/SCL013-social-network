@@ -1,6 +1,6 @@
 import { viewWelcome } from '../Views/Pages/Welcome.js';
 import { viewLogIn } from '../Views/Pages/LogIn.js';
-/*  import { viewForm } from './Views/Pages/Form.js';   */
+import { viewSignIn} from '../Views/Pages/SignIn.js';
 
 const showView = (hash) => {
   const pageContainer = document.getElementById('page_container');
@@ -13,6 +13,9 @@ const showView = (hash) => {
     case '#/iniciarSesion':
       pageContainer.appendChild = viewLogIn();
       break;
+    case '#/registrar':
+      pageContainer.appendChild = viewSignIn();
+      break;
     default:
       pageContainer.innerHTML = '<h1>Página no existe uwu</h1>';
   }
@@ -23,7 +26,9 @@ export const changeRoute = (hash) => {
     showView(hash);
   } else if (hash === '#/iniciarSesion') {
     showView(hash);
-  } else {
+  }else if (hash === '#/registrar') {
+    showView(hash);
+  }else {
     showView(hash);
   }
 };
