@@ -1,5 +1,5 @@
 import { viewWelcome } from '../Views/Pages/Welcome.js';
-import { viewSignIn } from '../Views/Pages/SignIn.js';
+import { viewLogIn } from '../Views/Pages/LogIn.js';
 /*  import { viewForm } from './Views/Pages/Form.js';   */
 
 const showView = (hash) => {
@@ -11,7 +11,7 @@ const showView = (hash) => {
       pageContainer.appendChild = viewWelcome();
       break;
     case '#/iniciarSesion':
-      pageContainer.appendChild = viewSignIn();
+      pageContainer.appendChild = viewLogIn();
       break;
     default:
       pageContainer.innerHTML = '<h1>Página no existe uwu</h1>';
