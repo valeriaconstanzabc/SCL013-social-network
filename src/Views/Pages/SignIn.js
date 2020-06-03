@@ -1,3 +1,5 @@
+import { login }  from '../../lib/index.js';
+
 export const viewSignIn = () => {
   const viewSignInContainer = document.getElementById('page_container');
   viewSignInContainer.innerHTML = `
@@ -29,6 +31,10 @@ export const viewSignIn = () => {
           </div>    
         </div>
     </form>`;
+    const buttonGoogle = viewSignInContainer.querySelector('#btngoogle');
+    buttonGoogle.addEventListener('click', () => {
+      login()
+    }) 
 
   return viewSignInContainer;
 };
