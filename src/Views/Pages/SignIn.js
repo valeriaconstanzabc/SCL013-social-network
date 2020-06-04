@@ -1,4 +1,5 @@
-import { login }  from '../../lib/index.js';
+import { login } from '../../lib/authentication.js';
+import { register } from '../../lib/register.js';
 
 export const viewSignIn = () => {
   const viewSignInContainer = document.getElementById('page_container');
@@ -9,16 +10,16 @@ export const viewSignIn = () => {
           <hr>
       
           <label for="name"><b>Nombre completo</b></label>
-          <input type="text" placeholder="Lofche" name="name" required>
+          <input type="text" id="name" placeholder="Lofche" name="name" required>
       
           <label for="email"><b>Correo Electrónico</b></label>
-          <input type="text" placeholder="lofche@example.com" name="email" required>
+          <input type="text" id="email" placeholder="lofche@example.com" name="email" required>
 
           <label for="psw"><b>Contraseña</b></label>
-          <input type="password" placeholder="Ingresa Contraseña" name="psw" required>
+          <input type="password" id ="password" placeholder="Ingresa Contraseña" name="psw" required>
       
           <label for="psw"><b>Confirme su contraseña</b></label>
-          <input type="password" placeholder="Ingresa Contraseña" name="psw" required>
+          <input type="password" id="repeat_password" placeholder="Ingresa Contraseña" name="psw" required>
 
           <label><b>También puedes registrarte con:</b></label>
 
@@ -27,14 +28,23 @@ export const viewSignIn = () => {
           </button>
 
           <div class="buttonNext">
-            <button type="button" class="siguiente">Siguiente</button>
+            <button type="button" id="btnRegister" class="register">Registrar</button>
           </div>    
         </div>
     </form>`;
-    const buttonGoogle = viewSignInContainer.querySelector('#btngoogle');
-    buttonGoogle.addEventListener('click', () => {
-      login()
-    }) 
 
+  const buttonRegister = viewSignInContainer.querySelector('#btnRegister');
+  buttonRegister.addEventListener('click', () => {
+    //  const name = viewSignInContainer.querySelector('#name').value;
+    const email = viewSignInContainer.querySelector('#email').value;
+    const password = viewSignInContainer.querySelector('#password').value;
+    //  const repeatPassword = viewSignInContainer.querySelector('#repeat_password').value;
+    register(email, password);
+  });
+
+  const buttonGoogle = viewSignInContainer.querySelector('#btngoogle');
+  buttonGoogle.addEventListener('click', () => {
+    login();
+  });
   return viewSignInContainer;
 };

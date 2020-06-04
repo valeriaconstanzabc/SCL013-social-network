@@ -1,9 +1,4 @@
-// aqui exportaras las funciones que necesites
-
-export const myFunction = () => {
-  // aqui tu codigo
-  console.log('Hola mundo!');
-};
+//  import { viewSignIn } from '../Views/Pages/SignIn.js';
 
 export const login = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
