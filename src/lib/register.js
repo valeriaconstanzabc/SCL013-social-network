@@ -1,4 +1,5 @@
-//  import { viewSignIn } from '../Views/Pages/SignIn.js';
+import { viewFeed } from '../Views/Pages/Feed.js';
+
 
 export const register = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -27,6 +28,7 @@ export const observer = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       console.log('existe usuario activo');
+      viewFeed();
       //    User is signed in.
       const displayName = user.displayName;
       const email = user.email;
