@@ -1,75 +1,159 @@
 *{
     margin: 0px;
     padding: 0px;
+    
 }
-
-#container{ /*Poner el fondo aquí*/
-    background: yellowgreen;
-}
-
-#header{
-    background: rgb(207, 242, 243);
+#container{
     display: flex;
-    padding: 4px;
-    margin: 10px 0px 0px 0px;
+    flex-direction: column;
+    background-image: url("imagenes/FondoGrande.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;/* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
+    background-size: cover; /* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
 }
-    /*#headerLogo{
-        
-    }*/
-        #logoHeader{
-            height: 50px;
-            padding-left: 7px;
-        }
-    /*#divLogInButton{
-        
-    }
-        #logInButton{
-            
-        }*/
-
-.main{
-    background: yellow;
-    height: 100px;
-}
-
-#footer{
-    background: rgb(207, 242, 243);
-    display: flex;
-    padding: 4px;
-    margin: 0px 0px 10px 0px;
-    justify-content: center;
-    align-items: center;
-                
-}
-    #logoFooter{
-        height: 50px;
-        padding-left: 5px;
-        padding-right: 5px;
+    #header{
+        position: fixed;
+        width: 100%;
         display: flex;
         flex-direction: row;
-        /*background: hotpink;*/
-    }
-        #imgFooter{
-            height: 50px;
-        }
-
-    #copyright{
-        color: #24255E;
-        font-family: 'Comfortaa', cursive;
-        font-size: 10px;
-        /*background: #7879;*/
-    }
-    .social-media{
-        height: 50px;
-        display: flex;
+        justify-content: flex-end;
         align-items: center;
-        margin: 2px;
-        padding-left: 3px;
-        /*background: indianred;*/
+        margin-top: 15px;
+        padding: 7px 0px 7px 0px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
-        #socialMedia1, #socialMedia2, #socialMedia3 {
-            height: 25px;
+        #headerLogo{
+            
+            order: 0;
+            flex: 3 1 auto;
+            align-self: auto;
+            display: flex;
+            justify-content: flex-end;
         }
-        #socialMedia1{
-            padding-left: 50px;
+            #logoHeader{
+                height: 50px;
+                padding-left: 7px;
+            }
+        #divLogInButton{
+            order: 0;
+            flex: 3 1 auto;
+            align-self: auto;
+            width: 5px;
+            padding-right: 18px;
+            display: flex;
+            justify-content: flex-end;
         }
+            #logInButton{
+                position: relative;
+                font-family: 'Actor', sans-serif;
+                color:white;
+                width: 110px;
+                height: 30px;
+                border: 3px;
+                background: #4080FF;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                border-radius: 6px;
+                cursor: pointer;
+            }
+    
+    #welcomeLofche{
+        height: 670px;
+        width: 180px;
+        padding: 13px 0px 0px 25px;
+        margin-top: 70px;
+    }
+        /* #divLogoWelcome{
+        } */
+
+        #logoWelcome{
+            height: 150px;  
+        }
+    #containerWelcome{
+        font-family: 'Comfortaa', cursive;
+        color:white;
+        font-size: 12px;
+        line-height: 25px;
+        padding-left: 5px;
+    }
+
+    #footer{
+        position: fixed;
+        width: 100%;
+        bottom: 10px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        background-size: cover;
+        display: flex;
+        padding: 4px 18px 4px 18px;
+        
+        margin-bottom: 15px;
+        justify-content: center;
+        align-items: center;
+    }
+        #logoFooter{
+            display: flex;
+            flex-direction: row;
+            padding-right: 6px;
+            order: 0;
+            flex: 0 2 auto;
+            align-self: auto;
+        }
+            #imgFooter{
+                height: 50px;
+            }
+
+        #copyright{
+            color: #24255E;
+            font-family: 'Comfortaa', cursive;
+            font-size: 10px;
+            order: 0;
+            flex: 5 0 auto;
+            align-self: auto;        
+            display: flex;   
+            justify-content: flex-start;
+        }
+        #containerSocialMedia{
+            margin-right: 30px;
+            display: flex;
+            align-items: center;
+        }
+        .social-media{
+            margin: 3px;
+        }
+            #socialMedia1, #socialMedia2, #socialMedia3 {
+                height: 25px;     
+            }
+
+@media all and (max-width: 685px){
+    #container{background-image: url("imagenes/FondoChico.jpg");}
+}
+
+@media all and (min-width: 720px){
+    #welcomeLofche{padding-left: 50px;}
+}
+
+
+
+#containerLogIn{
+    height: 670px;
+}
+    #modalLogIn{
+        width: 180px;
+        padding: 25px;
+        margin-top: 120px;
+        font-family: 'Comfortaa', cursive;
+        font-size: 15px;
+
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+    }
+
+#containerSignIn{
+    height: 800px;
+    width: 180px;
+    padding: 13px 0px 0px 25px;
+    margin-top: 70px;
+}

@@ -4,11 +4,11 @@ import { viewFooter } from '../Components/Footer.js';
 export const viewWelcome = () => {
   const pageContainer = document.getElementById('page_container');
   pageContainer.innerHTML = `
-    <div class="main">
-      <div>
-        <img src="" alt="" id="logoHeader">
+    <div id="welcomeLofche">
+      <div id="divLogoWelcome">
+        <img src="imagenes/lofcheColgante.png" alt="" id="logoWelcome">
       </div>
-      <div>
+      <div id="containerWelcome">
         <p>Lofche significa "Comunidad" en Mapudungun. Y eso es 
         lo que somos! una comunidad para averiguar todas aquellas 
         cosas que no sabemos, aquellas cosas que buscamos y no 

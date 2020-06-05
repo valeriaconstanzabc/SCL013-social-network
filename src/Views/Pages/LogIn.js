@@ -3,9 +3,9 @@ import { logIn } from '../../lib/register.js';
 export const viewLogIn = () => {
   const viewSignInContainer = document.getElementById('page_container');
   viewSignInContainer.innerHTML = `
-  <div class="main">
+  <div id="containerLogIn">
     <form>
-      <div>
+      <div id="modalLogIn">
         <h1>Iniciar Sesión</h1>
         <hr>
     

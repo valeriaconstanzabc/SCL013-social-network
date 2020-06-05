@@ -4,6 +4,7 @@ import { register } from '../../lib/register.js';
 export const viewSignIn = () => {
   const viewSignInContainer = document.getElementById('page_container');
   viewSignInContainer.innerHTML = `
+    <div id="containerSignIn">
     <form>
         <div>
           <h1>¡Únete a Lofche!</h1>
@@ -29,9 +30,10 @@ export const viewSignIn = () => {
 
           <div class="buttonNext">
             <button type="button" id="btnRegister" class="register">Registrar</button>
-          </div>    
+          </div>
         </div>
-    </form>`;
+    </form>
+    </div>`;
 
   const buttonRegister = viewSignInContainer.querySelector('#btnRegister');
   buttonRegister.addEventListener('click', () => {
