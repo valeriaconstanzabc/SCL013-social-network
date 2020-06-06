@@ -1,9 +1,12 @@
 import { viewHeaderFeed } from '../Components/Header.js';
 import { viewFooter } from '../Components/Footer.js';
 
-export const viewFeed = () => {
+export const viewFeed = (user) => {
+  //  const user = user;
   const pageContainer = document.getElementById('page_container');
-  pageContainer.innerHTML = `
+
+  if (user.emailVerified) {
+    pageContainer.innerHTML = `
       <div id="feedLofche">
         <div id="publicationFeed">
         <input type="text" id="textPublication" placeholder="Pregunta a tu comunidad" name="textPublication" required>
@@ -15,8 +18,8 @@ export const viewFeed = () => {
       
       </div>`;
 
-  viewHeaderFeed();
-  viewFooter();
-
+    viewHeaderFeed();
+    viewFooter();
+  }
   return pageContainer;
 };
