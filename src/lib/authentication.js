@@ -24,7 +24,7 @@ export const login = () => {
 };
 
 export const loginFacebook = () => {
-  const provider = new firebase.auth.facebookAuthProvider();
+  const provider = new firebase.auth.FacebookAuthProvider();
 
   firebase.auth().signInWithPopup(provider).then((result) => {
     //  This gives you a Google Access Token. You can use it to access the facebook API.

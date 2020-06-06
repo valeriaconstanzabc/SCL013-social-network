@@ -51,7 +51,7 @@ export const viewSignIn = () => {
   buttonGoogle.addEventListener('click', () => {
     login();
   });
-  
+
   const buttonFacebook = viewSignInContainer.querySelector('#btnFacebook');
   buttonFacebook.addEventListener('click', () => {
     loginFacebook();
