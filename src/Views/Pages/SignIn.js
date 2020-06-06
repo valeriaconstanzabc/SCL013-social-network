@@ -1,4 +1,4 @@
-import { login } from '../../lib/authentication.js';
+import { login, loginFacebook } from '../../lib/authentication.js';
 import { register } from '../../lib/register.js';
 
 export const viewSignIn = () => {
@@ -27,6 +27,9 @@ export const viewSignIn = () => {
           <button type="button" id="btngoogle">
             <img src="imagenes/google.png" alt="" class="social-media-logo" id="google">
           </button>
+          <button type="button" id="btnFacebook">
+            <img src="imagenes/facebook.png" alt="" class="social-media-logo" id="facebook">
+          </button>
 
           <div class="buttonNext">
             <button type="button" id="btnRegister" class="register">Registrar</button>
@@ -47,6 +50,11 @@ export const viewSignIn = () => {
   const buttonGoogle = viewSignInContainer.querySelector('#btngoogle');
   buttonGoogle.addEventListener('click', () => {
     login();
+  });
+  
+  const buttonFacebook = viewSignInContainer.querySelector('#btnFacebook');
+  buttonFacebook.addEventListener('click', () => {
+    loginFacebook();
   });
   return viewSignInContainer;
 };
