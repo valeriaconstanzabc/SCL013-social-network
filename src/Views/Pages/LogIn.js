@@ -16,9 +16,7 @@ export const viewLogIn = () => {
         <input type="password" id="password_login" placeholder="Ingresa Contraseña" name="psw" required>
     
         <div class="buttonNext">
-          <a href="#/feed">
             <button type="button" id="next_button" class="next">Siguiente</button>
-          </a> 
         </div>
 
         <label>¿No tienes cuenta?</label>

@@ -2,6 +2,9 @@ import { viewWelcome } from '../Views/Pages/Welcome.js';
 import { viewLogIn } from '../Views/Pages/LogIn.js';
 import { viewSignIn } from '../Views/Pages/SignIn.js';
 import { viewFeed } from '../Views/Pages/Feed.js';
+import { viewProfile } from '../Views/Pages/Profile.js';
+import { closing } from './register.js';
+
 
 const showView = (hash) => {
   const pageContainer = document.getElementById('page_container');
@@ -20,6 +23,13 @@ const showView = (hash) => {
     case '#/feed':
       pageContainer.appendChild = viewFeed();
       break;
+    case '#/profile':
+      pageContainer.appendChild = viewProfile();
+      break;
+    case '#/logout':
+      closing();
+      pageContainer.appendChild = viewLogIn();
+      break;
     default:
       pageContainer.innerHTML = '<h1>Página no existe uwu</h1>';
   }
@@ -33,6 +43,10 @@ export const changeRoute = (hash) => {
   } else if (hash === '#/registrar') {
     showView(hash);
   } else if (hash === '#/feed') {
+    showView(hash);
+  } else if (hash === '#/profile') {
+    showView(hash);
+  } else if (hash === '#/logout') {
     showView(hash);
   } else {
     showView(hash);

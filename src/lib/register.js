@@ -44,3 +44,13 @@ export const observer = () => {
   });
 };
 observer();
+
+export const closing = () => {
+  firebase.auth().signOut()
+    .then(() => {
+      console.log('Saliendo...');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};

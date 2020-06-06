@@ -45,7 +45,7 @@ export const viewHeaderFeed = () => {
             <div class="barra">
               <nav class="navOptions">
                 <a href="#/profile" id="goToProfile">Ir al perfil</a>
-                <a href="#/" id="logout">Cerrar sesión</a>  
+                <a href="#/logout" id="logout">Cerrar sesión</a>  
               </nav>
             </div>
     </div>
