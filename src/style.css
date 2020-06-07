@@ -12,119 +12,281 @@
     background-attachment: fixed;/* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
     background-size: cover; /* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
 }
-    #header{
-        position: fixed;
-        width: 100%;
+
+/*-----------------------------------------------------------------------------------------------------
+            SCROLL 
+-----------------------------------------------------------------------------------------------------*/
+
+::-webkit-scrollbar{
+    width: 10px;
+    background-color: #F5F5F5;
+}
+::-webkit-scrollbar-track{
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #4080FF;
+    background-image: -webkit-linear-gradient(90deg,rgba(255, 255, 255, .2) 25%,transparent 25%,transparent 50%,rgba(255, 255, 255, .2) 50%,rgba(255, 255, 255, .2) 75%,transparent 75%,transparent)
+}
+
+/*-----------------------------------------------------------------------------------------------------
+            HEADER 
+-----------------------------------------------------------------------------------------------------*/
+
+#header{
+    position: fixed;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 15px;
+    padding: 7px 0px 7px 0px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+    #headerLogo{        
+        order: 0;
+        flex: 3 1 auto;
+        align-self: auto;
+        display: flex;
+        justify-content: flex-end;
+    }
+        #logoHeader{
+            height: 50px;
+            padding-left: 7px;
+        }
+    #divLogInButton{
+        order: 0;
+        flex: 3 1 auto;
+        align-self: auto;
+        width: 5px;
+        padding-right: 18px;
+        display: flex;
+        justify-content: flex-end;
+    }
+        #logInButton{
+            position: relative;
+            font-family: 'Actor', sans-serif;
+            color:white;
+            width: 110px;
+            height: 30px;
+            border: 3px;
+            background: #4080FF;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+/*-----------------------------------------------------------------------------------------------------
+            WELCOME
+-----------------------------------------------------------------------------------------------------*/
+    
+#welcomeLofche{
+    height: 670px;
+    width: 180px;
+    padding: 13px 0px 0px 30px;
+    margin-top: 70px;
+}
+    /* #divLogoWelcome{
+    } */
+
+    #logoWelcome{
+        height: 150px;  
+    }
+
+#containerWelcome{
+    font-family: 'Comfortaa', cursive;
+    color:white;
+    font-size: 14px;
+    line-height: 23px;
+    padding-left: 5px;
+    padding-top: 10px;
+}
+
+/*-----------------------------------------------------------------------------------------------------
+            FOOTER
+-----------------------------------------------------------------------------------------------------*/
+
+#footer{
+    position: fixed;
+    width: 100%;
+    bottom: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-size: cover;
+    display: flex;
+    padding: 4px 18px 4px 18px;    
+    margin-bottom: 15px;
+    justify-content: center;
+    align-items: center;
+}
+    #logoFooter{
         display: flex;
         flex-direction: row;
-        justify-content: flex-end;
-        align-items: center;
-        margin-top: 15px;
-        padding: 7px 0px 7px 0px;
-        background: rgba(255, 255, 255, 0.9);
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        padding-right: 6px;
+        order: 0;
+        flex: 0 2 auto;
+        align-self: auto;
     }
-        #headerLogo{
-            
-            order: 0;
-            flex: 3 1 auto;
-            align-self: auto;
-            display: flex;
-            justify-content: flex-end;
+        #imgFooter{
+            height: 50px;
         }
-            #logoHeader{
-                height: 50px;
-                padding-left: 7px;
-            }
-        #divLogInButton{
-            order: 0;
-            flex: 3 1 auto;
-            align-self: auto;
-            width: 5px;
-            padding-right: 18px;
-            display: flex;
-            justify-content: flex-end;
-        }
-            #logInButton{
-                position: relative;
-                font-family: 'Actor', sans-serif;
-                color:white;
-                width: 110px;
-                height: 30px;
-                border: 3px;
-                background: #4080FF;
-                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                border-radius: 6px;
-                cursor: pointer;
-            }
-    
-    #welcomeLofche{
-        height: 670px;
-        width: 180px;
-        padding: 13px 0px 0px 25px;
-        margin-top: 70px;
-    }
-        /* #divLogoWelcome{
-        } */
 
-        #logoWelcome{
-            height: 150px;  
-        }
-    #containerWelcome{
+    #copyright{
+        color: #24255E;
         font-family: 'Comfortaa', cursive;
-        color:white;
-        font-size: 12px;
-        line-height: 25px;
-        padding-left: 5px;
+        font-size: 10px;
+        order: 0;
+        flex: 5 0 auto;
+        align-self: auto;        
+        display: flex;   
+        justify-content: flex-start;
     }
-
-    #footer{
-        position: fixed;
-        width: 100%;
-        bottom: 10px;
-        background: rgba(255, 255, 255, 0.9);
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        background-size: cover;
+    #containerSocialMedia{
+        margin-right: 30px;
         display: flex;
-        padding: 4px 18px 4px 18px;
-        
-        margin-bottom: 15px;
-        justify-content: center;
         align-items: center;
     }
-        #logoFooter{
-            display: flex;
-            flex-direction: row;
-            padding-right: 6px;
-            order: 0;
-            flex: 0 2 auto;
-            align-self: auto;
-        }
-            #imgFooter{
-                height: 50px;
-            }
-
-        #copyright{
-            color: #24255E;
-            font-family: 'Comfortaa', cursive;
-            font-size: 10px;
-            order: 0;
-            flex: 5 0 auto;
-            align-self: auto;        
-            display: flex;   
-            justify-content: flex-start;
-        }
-        #containerSocialMedia{
-            margin-right: 30px;
-            display: flex;
-            align-items: center;
-        }
         .social-media{
             margin: 3px;
         }
-            #socialMedia1, #socialMedia2, #socialMedia3 {
-                height: 25px;     
+        #socialMedia1, #socialMedia2, #socialMedia3 {
+            height: 25px;     
+        }
+
+/*-----------------------------------------------------------------------------------------------------
+            LOGIN
+-----------------------------------------------------------------------------------------------------*/
+
+#containerLogIn{
+    height: 755px;
+    display: flex;
+    justify-content: center;
+
+    background-image: url("imagenes/FondoSinVentanas.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+    #modalLogIn{
+        display: flex;
+        flex-direction: column;
+        width: 250px;
+        padding: 25px;
+        margin-top: 120px;
+        font-family: 'Comfortaa', cursive;
+        color: #24255E;
+        font-size: 14px;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        text-align: center;
+    }
+    #email_login , #password_login{
+        width: 100%;
+        padding: 10px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #212157;
+        border-radius: 10px;
+        background: #FFFFFF;
+    }
+    .text{
+        margin-top: 5px;
+        margin-bottom: 5px;
+        text-align: left;
+    }
+    #next_button{
+        position: relative;
+        font-family: 'Actor', sans-serif;
+        color:white;
+        width: 250px;
+        height: 30px;
+        border: 3px;
+        background: #4080FF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 6px;
+        margin-top: 40px;
+        margin-bottom: 25px;
+        cursor: pointer;
+    }
+    #registerHere{
+        cursor: pointer;
+        font-size: 11px;
+    }
+
+/*-----------------------------------------------------------------------------------------------------
+            SIGNIN
+-----------------------------------------------------------------------------------------------------*/
+
+#containerSignIn{
+    height: 830px;
+    display: flex;
+    justify-content: center;
+
+    background-image: url("imagenes/FondoSinVentanas.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+    #modalSignIn{
+        display: flex;
+        flex-direction: column;
+        width: 250px;
+        padding: 25px;
+        margin-top: 120px;
+        font-family: 'Comfortaa', cursive;
+        color: #24255E;
+        font-size: 14px;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        text-align: center;
+    }
+        #name , #email , #password , #repeat_password{
+            width: 100%;
+            padding: 10px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid #212157;
+            border-radius: 10px;
+            background: #FFFFFF;
+        }
+
+        .textRegisterWith{
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        #btngoogle , #btnFacebook{
+            margin: 0px 7px 15px 7px;
+            border: 0px;
+            background-color: Transparent;
+            cursor: pointer;
+        }
+            .social-media-logo{
+                height: 40px;  
             }
+        #btnRegister{
+            position: relative;
+            font-family: 'Actor', sans-serif;
+            color:white;
+            width: 250px;
+            height: 30px;
+            border: 3px;
+            background: #4080FF;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+/*-----------------------------------------------------------------------------------------------------
+            MEDIAQUERY
+-----------------------------------------------------------------------------------------------------*/
 
 @media all and (max-width: 685px){
     #container{background-image: url("imagenes/FondoChico.jpg");}
@@ -134,26 +296,12 @@
     #welcomeLofche{padding-left: 50px;}
 }
 
-
-
-#containerLogIn{
-    height: 670px;
+@media all and (min-width: 850px){
+    #welcomeLofche{padding-left: 70px;}
 }
-    #modalLogIn{
-        width: 180px;
-        padding: 25px;
-        margin-top: 120px;
-        font-family: 'Comfortaa', cursive;
-        font-size: 15px;
 
-        background: rgba(255, 255, 255, 0.95);
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 10px;
-    }
-
-#containerSignIn{
-    height: 800px;
-    width: 180px;
-    padding: 13px 0px 0px 25px;
-    margin-top: 70px;
+@media all and (min-width: 1000px){
+    #welcomeLofche{width: 270px; padding-left: 90px;}
+    #containerWelcome{font-size: 17px; line-height: 25px;}
+    #modalLogIn , #next_button , #modalSignIn , #btnRegister{width: 300px;}
 }

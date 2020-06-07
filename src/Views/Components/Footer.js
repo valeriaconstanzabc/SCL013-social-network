@@ -10,13 +10,21 @@ export const viewFooter = () => {
       </div>
       <div id="containerSocialMedia">
         <div class="social-media">
-          <img src="imagenes/facebook.png" alt="" id="socialMedia1">
+          <a href="https://www.facebook.com/">
+            <img src="imagenes/facebook.png" alt="" id="socialMedia1">
+          </a>
         </div>
+
         <div class="social-media">
-          <img src="imagenes/instagram.png" alt="" id="socialMedia2">
+          <a href="https://www.instagram.com/">
+            <img src="imagenes/instagram.png" alt="" id="socialMedia2">
+          </a>
         </div>
+
         <div class="social-media">
-          <img src="imagenes/twitter.png" alt="" id="socialMedia3">
+          <a href="https://twitter.com/">
+            <img src="imagenes/twitter.png" alt="" id="socialMedia3">
+          </a>
         </div>
       </div>
     </div>`;

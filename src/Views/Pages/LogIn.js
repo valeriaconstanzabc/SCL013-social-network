@@ -7,12 +7,12 @@ export const viewLogIn = () => {
     <form>
       <div id="modalLogIn">
         <h1>Iniciar Sesión</h1>
-        <hr>
+        <hr><br><br>
     
-        <label for="email"><b>Correo Electrónico</b></label>
+        <label for="email" class="text"><b>Correo Electrónico</b></label>
         <input type="text" id="email_login" placeholder="lofche@example.com" name="email" required>
     
-        <label for="psw"><b>Contraseña</b></label>
+        <label for="psw" class="text"><b>Contraseña</b></label>
         <input type="password" id="password_login" placeholder="Ingresa Contraseña" name="psw" required>
     
         <div class="buttonNext">
@@ -21,7 +21,7 @@ export const viewLogIn = () => {
 
         <label>¿No tienes cuenta?</label>
         <a href="#/registrar">
-          <label><b><u>Regístrate aquí</u></b></label>
+          <label id="registerHere"><b><u>Regístrate aquí</u></b></label>
         </a>
       </div>
     </form>

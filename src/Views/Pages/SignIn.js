@@ -5,37 +5,39 @@ export const viewSignIn = () => {
   const viewSignInContainer = document.getElementById('page_container');
   viewSignInContainer.innerHTML = `
     <div id="containerSignIn">
-    <form>
-        <div>
+      <form>
+        <div id="modalSignIn">
           <h1>¡Únete a Lofche!</h1>
-          <hr>
-      
-          <label for="name"><b>Nombre completo</b></label>
+          <hr><br><br>
+        
+          <label for="name" class="text"><b>Nombre completo</b></label>
           <input type="text" id="name" placeholder="Lofche" name="name" required>
-      
-          <label for="email"><b>Correo Electrónico</b></label>
+        
+          <label for="email" class="text"><b>Correo Electrónico</b></label>
           <input type="text" id="email" placeholder="lofche@example.com" name="email" required>
 
-          <label for="psw"><b>Contraseña</b></label>
+          <label for="psw" class="text"><b>Contraseña</b></label>
           <input type="password" id ="password" placeholder="Ingresa Contraseña" name="psw" required>
-      
-          <label for="psw"><b>Confirme su contraseña</b></label>
+        
+          <label for="psw" class="text"><b>Confirme su contraseña</b></label>
           <input type="password" id="repeat_password" placeholder="Ingresa Contraseña" name="psw" required>
 
-          <label><b>También puedes registrarte con:</b></label>
+          <label class="textRegisterWith"><b>También puedes registrarte con:</b></label>
 
-          <button type="button" id="btngoogle">
-            <img src="imagenes/google.png" alt="" class="social-media-logo" id="google">
-          </button>
-          <button type="button" id="btnFacebook">
-            <img src="imagenes/facebook.png" alt="" class="social-media-logo" id="facebook">
-          </button>
+          <div id="registerWith">
+            <button type="button" id="btngoogle">
+              <img src="imagenes/google.png" alt="" class="social-media-logo" id="google">
+            </button>
+            <button type="button" id="btnFacebook">
+              <img src="imagenes/facebook.png" alt="" class="social-media-logo" id="facebook">
+            </button>
+          </div>
 
           <div class="buttonNext">
             <button type="button" id="btnRegister" class="register">Registrar</button>
           </div>
         </div>
-    </form>
+      </form>
     </div>`;
 
   const buttonRegister = viewSignInContainer.querySelector('#btnRegister');
