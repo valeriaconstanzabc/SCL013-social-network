@@ -16,6 +16,7 @@ export const viewHeader = () => {
 
   return headerContainer;
 };
+
 export const viewHeaderFeed = () => {
   const headerContainer = document.getElementById('header_container');
   headerContainer.innerHTML = `

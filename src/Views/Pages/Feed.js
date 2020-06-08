@@ -7,6 +7,7 @@ export const viewFeed = (user) => {
 
   if (user.emailVerified) {
     pageContainer.innerHTML = `
+    <div id="containerLofche">
       <div id="feedLofche">
         <div id="publicationFeed">
         <input type="text" id="textPublication" placeholder="Pregunta a tu comunidad" name="textPublication" required>
@@ -15,8 +16,8 @@ export const viewFeed = (user) => {
           </div>
         <div>PUBLICACIONES DE LOS DEMAS</div>  
         </div>
-      
-      </div>`;
+      </div>
+    </div>`;
 
     viewHeaderFeed();
     viewFooter();
