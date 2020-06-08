@@ -41,7 +41,7 @@ export const viewSignIn = () => {
     </div>`;
 
   const buttonRegister = viewSignInContainer.querySelector('#btnRegister');
-  buttonRegister.addEventListener('click', () => {
+  buttonRegister.addEventListener('click', async () => {
     //  const name = viewSignInContainer.querySelector('#name').value;
     const email = viewSignInContainer.querySelector('#email').value;
     const password = viewSignInContainer.querySelector('#password').value;
@@ -50,12 +50,12 @@ export const viewSignIn = () => {
   });
 
   const buttonGoogle = viewSignInContainer.querySelector('#btngoogle');
-  buttonGoogle.addEventListener('click', () => {
+  buttonGoogle.addEventListener('click', async () => {
     login();
   });
 
   const buttonFacebook = viewSignInContainer.querySelector('#btnFacebook');
-  buttonFacebook.addEventListener('click', () => {
+  buttonFacebook.addEventListener('click', async () => {
     loginFacebook();
   });
   return viewSignInContainer;

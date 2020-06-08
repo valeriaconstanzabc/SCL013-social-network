@@ -1,4 +1,5 @@
 import { viewFeed } from '../Views/Pages/Feed.js';
+import { viewLoginError } from '../Views/Components/Errors.js';
 
 export const verificate = () => {
   const user = firebase.auth().currentUser;
@@ -20,20 +21,16 @@ export const register = (email, password) => {
     //  Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(errorMessage);
       console.log(errorCode);
+      console.log(errorMessage);
     });
 };
 
 export const logIn = (emailLogin, passwordLogin) => {
   firebase.auth().signInWithEmailAndPassword(emailLogin, passwordLogin)
     .catch((error) => {
-    // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
 
-      console.log(errorCode);
-      console.log(errorMessage);
+      viewLoginError();
     });
 };
 
@@ -70,4 +67,3 @@ export const closing = () => {
       console.log(error);
     });
 };
-

@@ -15,6 +15,8 @@ export const viewLogIn = () => {
         <label for="psw" class="text"><b>Contraseña</b></label>
         <input type="password" id="password_login" placeholder="Ingresa Contraseña" name="psw" required>
     
+        <div class="error" id="errorMessage"></div>
+
         <div class="buttonNext">
             <button type="button" id="next_button" class="next">Siguiente</button>
         </div>
@@ -28,7 +30,7 @@ export const viewLogIn = () => {
   <div>`;
 
   const buttonLogin = viewSignInContainer.querySelector('#next_button');
-  buttonLogin.addEventListener('click', () => {
+  buttonLogin.addEventListener('click', async () => {
     const emailLogin = viewSignInContainer.querySelector('#email_login').value;
     const passwordLogin = viewSignInContainer.querySelector('#password_login').value;
     logIn(emailLogin, passwordLogin);
