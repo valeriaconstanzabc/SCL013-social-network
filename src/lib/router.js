@@ -28,7 +28,7 @@ const showView = (hash) => {
       break;
     case '#/logout':
       closing();
-      pageContainer.appendChild = viewWelcome();
+      window.location.hash = '#/';
       break;
     default:
       pageContainer.innerHTML = '<h1>Página no existe uwu</h1>';

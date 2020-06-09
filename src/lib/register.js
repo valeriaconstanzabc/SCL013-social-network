@@ -1,5 +1,5 @@
 import { viewFeed } from '../Views/Pages/Feed.js';
-import { viewLoginError, viewSignInError, viewRedirecting } from '../Views/Components/Errors.js';
+import { viewLoginError, viewSignInError, viewRedirecting } from '../Views/Components/Others.js';
 
 export const verificate = () => {
   const user = firebase.auth().currentUser;

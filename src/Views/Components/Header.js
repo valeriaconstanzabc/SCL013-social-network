@@ -42,12 +42,10 @@ export const viewHeaderFeed = () => {
     </a>
   </div> 
     <div id="headerPerfilButton">
-      <button type = "button" id="btnHeaderOptions"></button>
-            <div class="barra">
-              <nav class="navOptions">
+      <button type ="button" id="btnHeaderOptions">Usuario</button>
+            <div class="dropdownContent">
                 <a href="#/profile" id="goToProfile">Ir al perfil</a>
                 <a href="#/logout" id="logout">Cerrar sesión</a>  
-              </nav>
             </div>
     </div>
 </div>`;

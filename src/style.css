@@ -411,3 +411,59 @@
     #containerWelcome{font-size: 17px; line-height: 25px;}
     #modalLogIn , #next_button , #modalSignIn , #btnRegister{width: 300px;}
 }
+
+/*-----------------------------------------------------------------------------------------------------
+            HEADER NAVBAR + HOVER USUARIO MENU
+-----------------------------------------------------------------------------------------------------*/
+
+/* Dropdown Button */
+#btnHeaderOptions {
+    font-family: 'Actor', sans-serif;
+    color:white;
+    width: 50px;
+    height: 30px;
+    border: 3px;
+    background: #4080FF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  /* El contenedor <div> - needed to position the dropdown content */
+  #headerPerfilButton {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: #4080FF;
+    min-width: 120px;
+    height: 50px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 1;
+    border-radius: 6px;
+    
+  }
+  
+  /* Links inside the dropdown */
+  .dropdownContent a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    font-family: 'Actor', sans-serif;
+    color: white;
+    font-size: 15px;
+    background-color: #4080FF;
+    border-radius: 6px;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdownContent a:hover {background-color: #ddd;}
+  
+  /* Show the dropdown menu on hover */
+  #headerPerfilButton:hover .dropdownContent {display: block;}
+  

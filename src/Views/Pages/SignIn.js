@@ -18,7 +18,9 @@ export const viewSignIn = () => {
 
           <label for="psw" class="text"><b>Contraseña</b></label>
           <input type="password" id ="password" placeholder="Ingresa Contraseña" name="psw" required>
-        
+
+          <div class="error" id="errorMessage"></div>
+
           <label for="psw" class="text"><b>Confirme su contraseña</b></label>
           <input type="password" id="repeat_password" placeholder="Ingresa Contraseña" name="psw" required>
 

@@ -28,7 +28,7 @@ export const viewRedirecting = () => {
 
   const btnRedirecting = viewSignInContainer.querySelector('#btnRedirecting');
   btnRedirecting.addEventListener('click', () => {
-    location.reload();
+    window.location.reload();
   });
 
   return viewSignInContainer;
