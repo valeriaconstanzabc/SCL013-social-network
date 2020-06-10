@@ -381,15 +381,73 @@
     padding: 25px;
     margin-top: 120px;
 }
-/*#publicacionFeed{
+#containerPublication{
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    margin: 20px;
+    font-family: 'Comfortaa', cursive;
+    color: #24255E;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+#publicationFeed{
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    margin: 20px;
+    font-family: 'Comfortaa', cursive;
+    color: #24255E;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+.textBoxStyle{
 
 }
+#imgOptionsDots{
+    width: 30px;
+    
+}
+#btnCrudOptions{
+    
+    border: 0px;
+    background-color: Transparent;
+    cursor: pointer;
+
+}
+
+.dropdownContent button {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    font-family: 'Actor', sans-serif;
+    color: white;
+    font-size: 15px;
+    background-color: #4080FF;
+    border-radius: 6px;
+  }
+
+.dropdownContent button:hover {background-color: #ddd;}
+#crudContainer:hover .dropdownContent {display: block;}
+  
     #textPublication{
-
+        padding: 30px;
     }
-    #btnPublish{}
-    #btnCancel{}/*
-
+    #butonsPublication{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding-top: 10px;
+    }
+        #btnPublish{}
+        #btnCancel{}/*
 /*-----------------------------------------------------------------------------------------------------
             MEDIAQUERY
 -----------------------------------------------------------------------------------------------------*/
@@ -417,7 +475,7 @@
 -----------------------------------------------------------------------------------------------------*/
 
 /* Dropdown Button */
-#btnHeaderOptions {
+#btnHeaderOptions{
     font-family: 'Actor', sans-serif;
     color:white;
     width: 50px;
@@ -430,11 +488,10 @@
   }
   
   /* El contenedor <div> - needed to position the dropdown content */
-  #headerPerfilButton {
+  #headerPerfilButton , #deleteCrud , #editCrud{
     position: relative;
     display: inline-block;
   }
-  
   /* Dropdown Content (Hidden by Default) */
   .dropdownContent {
     display: none;
