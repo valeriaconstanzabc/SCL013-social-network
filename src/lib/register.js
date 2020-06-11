@@ -11,14 +11,7 @@ export const verificate = () => {
     // An error happened.
   });
 };
-export const nameAndDistrictRegister = (name, district) => {
-  firebase.firestore().collection('usuario').add({
-    name: name.value, 
-    district: district.value,
-  })
-    .then((result) => { console.log('nombre y comuna guardada'); })
-    .catch(error => console.log(error));
-};
+
 export const register = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then(() => {
@@ -28,6 +21,12 @@ export const register = (email, password) => {
     .catch((error) => {
       viewSignInError();
     });
+
+  firebase.firestore().collection('Publicaciones').add({
+    name: name,
+  })
+    .then((result) => { console.log('mensaje guardado'); })
+    .catch(error => console.log(error));
 };
 
 export const logIn = (emailLogin, passwordLogin) => {

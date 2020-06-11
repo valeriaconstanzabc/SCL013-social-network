@@ -1,5 +1,5 @@
 import { login, loginFacebook } from '../../lib/authentication.js';
-import { register, nameAndDistrictRegister } from '../../lib/register.js';
+import { register } from '../../lib/register.js';
 
 export const viewSignIn = () => {
   const viewSignInContainer = document.getElementById('page_container');
@@ -50,7 +50,6 @@ export const viewSignIn = () => {
     const district = viewSignInContainer.querySelector('#district').value;
     const password = viewSignInContainer.querySelector('#password').value;
     register(email, password);
-    nameAndDistrictRegister(name, district);
   });
 
   const buttonGoogle = viewSignInContainer.querySelector('#btngoogle');

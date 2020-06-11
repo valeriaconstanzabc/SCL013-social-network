@@ -4,6 +4,7 @@ import { viewSignIn } from '../Views/Pages/SignIn.js';
 import { viewFeed } from '../Views/Pages/Feed.js';
 import { viewProfile } from '../Views/Pages/Profile.js';
 import { closing } from './register.js';
+import { viewError } from '../Views/Pages/404.js';
 
 
 const showView = (hash) => {
@@ -31,7 +32,7 @@ const showView = (hash) => {
       window.location.hash = '#/';
       break;
     default:
-      pageContainer.innerHTML = '<h1>Página no existe uwu</h1>';
+      pageContainer.appendChild = viewError();
   }
 };
 

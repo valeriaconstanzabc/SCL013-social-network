@@ -45,7 +45,6 @@ export const viewFeed = (user) => {
       date: ts.toLocaleDateString(),
       text: textPublication.value,
       uid: user.uid,
-      name: user.displayName,
       email: user.email,
     })
       .then((result) => { console.log('mensaje guardado'); })
@@ -98,6 +97,7 @@ export const viewFeed = (user) => {
 
           const buttonDelete = containerPost.querySelector('#deleteCrud');
           buttonDelete.addEventListener('click', () => {
+            alert('¿Quieres eliminar este mensaje?');
             deletePost();
           });
         } else {
