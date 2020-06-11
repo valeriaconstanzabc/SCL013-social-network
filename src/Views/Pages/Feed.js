@@ -1,15 +1,6 @@
 import { viewHeaderFeed } from '../Components/Header.js';
 import { viewFooter } from '../Components/Footer.js';
 //  import { observer } from '../../lib/register.js'
-const deletePost = () => {
-  firebase.firestore().collection('Publicaciones').doc('uid').delete()
-    .then(() => {
-      console.log('Document successfully deleted!');
-    })
-    .catch((error) => {
-      console.error('Error removing document: ', error);
-    });
-};
 
 export const viewFeed = (user) => {
   //  const user = user;
@@ -49,17 +40,9 @@ export const viewFeed = (user) => {
       console.log('input vacío');
       return;
     }
-
-    /*  const dateCorrected = (offset) => {
-      const offsetval = offset.val() || 0;
-      const serverTime = Date.now() + offsetval;
-    };
-    const today = firebase.firestore.serverTimesTamp;
-    const dateCorrected = `${today.getHours()}:${today.getMinutes()}:${today.getDate()}`; */
-
+    const ts = new Date();
     firebase.firestore().collection('Publicaciones').add({
-
-      date: new Date(),
+      date: ts.toLocaleDateString(),
       text: textPublication.value,
       uid: user.uid,
       name: user.displayName,
@@ -79,7 +62,7 @@ export const viewFeed = (user) => {
         console.log(doc.data());
         //  Falta agregar el reverse de la fecha orden descendiente
         if (doc.data().uid === user.uid) {
-          feedMessages.innerHTML += `
+          const postItem = `
           <div id="containerPublication">
             <div id="crudContainer">
               <button type ="button" id="btnCrudOptions"><img src="imagenes/dots1.png" alt="" class="imgOptionsDots" id="imgOptionsDots"></button>
@@ -96,14 +79,29 @@ export const viewFeed = (user) => {
             </div>
           </div>`;
 
-          const buttonDelete = document.querySelector('#deleteCrud');
-          buttonDelete.addEventListener('click', (event) => {
-            deletePost();
-            event.preventDefault();
-          });
+          const containerPost = document.createElement('div');
+          containerPost.classList.add('containerPost');
+          containerPost.innerHTML = postItem;
 
+          feedMessages.appendChild(containerPost);
+
+          const deletePost = () => {
+            firebase.firestore().collection('Publicaciones').doc('uid').delete()
+              .then(() => {
+                feedMessages.removeChild(containerPost);
+                console.log('Document successfully deleted!');
+              })
+              .catch((error) => {
+                console.error('Error removing document: ', error);
+              });
+          };
+
+          const buttonDelete = containerPost.querySelector('#deleteCrud');
+          buttonDelete.addEventListener('click', () => {
+            deletePost();
+          });
         } else {
-          feedMessages.innerHTML += `
+          const postItem = `
           <div id="containerPublication">
             <div class="textBoxStyle">  
               <span>${doc.data().name}</span>
@@ -112,6 +110,12 @@ export const viewFeed = (user) => {
               <span>${doc.data().text}</span>
             </div>
           </div>`;
+
+          const containerPost = document.createElement('div');
+          containerPost.classList.add('containerPost');
+          containerPost.innerHTML = postItem;
+
+          feedMessages.appendChild(containerPost);
         }
       });
     });
