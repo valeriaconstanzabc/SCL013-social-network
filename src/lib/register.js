@@ -11,7 +11,14 @@ export const verificate = () => {
     // An error happened.
   });
 };
-
+export const nameAndDistrictRegister = (name, district) => {
+  firebase.firestore().collection('usuario').add({
+    name: name.value, 
+    district: district.value,
+  })
+    .then((result) => { console.log('nombre y comuna guardada'); })
+    .catch(error => console.log(error));
+};
 export const register = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then(() => {
