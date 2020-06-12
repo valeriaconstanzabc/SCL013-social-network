@@ -13,8 +13,8 @@ export const viewFeed = (user) => {
         <form id="publicationFeed">
           <input type="text" id="textPublication" placeholder="Pregunta a tu comunidad" name="textPublication" required>
           <div id="butonsPublication">
-            <button type="submit" id="btnPublish" class="btnPublish">Publicar</button>
             <button type="button" id="btnCancel" class="btnCancel">Cancelar</button>
+            <button type="submit" id="btnPublish" class="btnPublish">Publicar</button>
           </div>
           </form>
         <div id="messagesContainer">PUBLICACIONES DE LOS DEMAS</div>  
@@ -29,8 +29,11 @@ export const viewFeed = (user) => {
   const feedMessages = document.querySelector('#messagesContainer');
   const publicationFeed = document.querySelector('#publicationFeed');
   const textPublication = document.querySelector('#textPublication');
-  const buttonPublish = document.querySelector('#btnPublish');
   const buttonCancel = document.querySelector('#btnCancel');
+
+  buttonCancel.addEventListener('click', () => {
+    textPublication.value = '';
+  });
 
   publicationFeed.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -42,7 +45,7 @@ export const viewFeed = (user) => {
     }
     const ts = new Date();
     firebase.firestore().collection('Publicaciones').add({
-      date: ts.toLocaleDateString(),
+      date: ts.toLocaleString(),
       text: textPublication.value,
       uid: user.uid,
       email: user.email,
@@ -61,11 +64,11 @@ export const viewFeed = (user) => {
         console.log(doc.data());
         //  Falta agregar el reverse de la fecha orden descendiente
         if (doc.data().uid === user.uid) {
-          const postItem = `
+          feedMessages.innerHTML += `
           <div id="containerPublication">
             <div id="crudContainer">
               <button type ="button" id="btnCrudOptions"><img src="imagenes/dots1.png" alt="" class="imgOptionsDots" id="imgOptionsDots"></button>
-                <div class="dropdownContent">
+                <div class="dropdownContentEdit">
                     <button id="editCrud">Editar</button>
                     <button id="deleteCrud">Delete</button>  
                 </div>
@@ -78,16 +81,9 @@ export const viewFeed = (user) => {
             </div>
           </div>`;
 
-          const containerPost = document.createElement('div');
-          containerPost.classList.add('containerPost');
-          containerPost.innerHTML = postItem;
-
-          feedMessages.appendChild(containerPost);
-
-          const deletePost = () => {
-            firebase.firestore().collection('Publicaciones').doc('uid').delete()
+          const deletePost = (uid) => {
+            firebase.firestore().collection('Publicaciones').doc(uid).delete()
               .then(() => {
-                feedMessages.removeChild(containerPost);
                 console.log('Document successfully deleted!');
               })
               .catch((error) => {
@@ -95,10 +91,10 @@ export const viewFeed = (user) => {
               });
           };
 
-          const buttonDelete = containerPost.querySelector('#deleteCrud');
+          const buttonDelete = document.querySelector('#deleteCrud');
           buttonDelete.addEventListener('click', () => {
             alert('¿Quieres eliminar este mensaje?');
-            deletePost();
+            deletePost(doc.id);
           });
         } else {
           const postItem = `

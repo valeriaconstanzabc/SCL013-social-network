@@ -49,7 +49,7 @@ export const viewSignIn = () => {
     const email = viewSignInContainer.querySelector('#email').value;
     const district = viewSignInContainer.querySelector('#district').value;
     const password = viewSignInContainer.querySelector('#password').value;
-    register(email, password);
+    register(name, email, password);
   });
 
   const buttonGoogle = viewSignInContainer.querySelector('#btngoogle');

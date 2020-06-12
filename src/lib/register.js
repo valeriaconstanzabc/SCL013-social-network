@@ -12,7 +12,7 @@ export const verificate = () => {
   });
 };
 
-export const register = (email, password) => {
+export const register = (name, email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then(() => {
       verificate();
