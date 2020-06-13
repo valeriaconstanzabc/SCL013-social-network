@@ -69,7 +69,7 @@ export const viewFeed = (user) => {
             <div id="crudContainer">
               <button type ="button" id="btnCrudOptions"><img src="imagenes/dots1.png" alt="" class="imgOptionsDots" id="imgOptionsDots"></button>
                 <div class="dropdownContentEdit">
-                    <button id="editCrud">Editar</button>
+                    <button id="editCrud" class="editCrud">Editar</button>
                     <button id="deleteCrud">Delete</button>  
                 </div>
             </div>
@@ -77,7 +77,7 @@ export const viewFeed = (user) => {
               <span>${doc.data().name}</span>
               <span>${doc.data().email}</span>
               <span>${doc.data().date}</span> 
-              <input class="postEditCrud">${doc.data().text}</input>
+              <input type="text" class="postEditCrud">${doc.data().text}</input>
             </div>
           </div>`;
 
@@ -86,10 +86,10 @@ export const viewFeed = (user) => {
             postEditCrud.value = text;
 
             const buttonSave = document.createElement('button');
-            buttonSave.setAttribute('id', 'buttonSave');
+            buttonSave.classList.add('buttonSave');
             buttonSave.innerHTML = 'Guardar';
-            const messagePostContainer = document.getElementById('messagePostContainer');
-            messagePostContainer.appendChild(buttonSave);
+            const messagePostContainer = document.querySelector('.textBoxStyle');
+            messagePostContainer.append(buttonSave);
 
 
             buttonSave.onclick = () => {
@@ -101,6 +101,7 @@ export const viewFeed = (user) => {
               })
                 .then(() => {
                   console.log('Document successfully updated!');
+                  buttonSave.style.display = 'hidden';
                 })
                 .catch((error) => {
                   // The document probably doesn't exist.
@@ -109,7 +110,7 @@ export const viewFeed = (user) => {
             };
           };
 
-          const buttonEdit = document.querySelector('#editCrud');
+          const buttonEdit = document.querySelector('.editCrud');
           buttonEdit.addEventListener('click', () => {
             alert('¿Quieres editar este mensaje?');
             editPost(doc.id, doc.data().text);

@@ -1,3 +1,6 @@
+import { viewHeaderFeed } from '../Components/Header.js';
+import { viewFooter } from '../Components/Footer.js';
+
 export const viewProfile = () => {
   const viewProfileContainer = document.getElementById('page_container');
   viewProfileContainer.innerHTML = `
@@ -11,6 +14,7 @@ export const viewProfile = () => {
         <p class="profileInfo">Valparaiso residiendo en Santiago</p>
     </div>
   `;
-
+  viewHeaderFeed();
+  viewFooter();
   return viewProfileContainer;
 };

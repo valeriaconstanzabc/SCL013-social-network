@@ -47,7 +47,7 @@ export const viewSignIn = () => {
   buttonRegister.addEventListener('click', async () => {
     const name = viewSignInContainer.querySelector('#name').value;
     const email = viewSignInContainer.querySelector('#email').value;
-    const district = viewSignInContainer.querySelector('#district').value;
+    //  const district = viewSignInContainer.querySelector('#district').value;
     const password = viewSignInContainer.querySelector('#password').value;
     register(name, email, password);
   });
