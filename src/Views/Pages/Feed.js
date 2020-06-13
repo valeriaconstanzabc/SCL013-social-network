@@ -11,7 +11,7 @@ export const viewFeed = (user) => {
     <div id="containerLofche">
       <div id="feedLofche">
         <form id="publicationFeed">
-          <input type="text" id="textPublication" placeholder="Pregunta a tu comunidad" name="textPublication" required>
+          <input type="text" id="textPublication" placeholder="Pregunta a tu comunidad" required></input>
           <div id="butonsPublication">
             <button type="button" id="btnCancel" class="btnCancel">Cancelar</button>
             <button type="submit" id="btnPublish" class="btnPublish">Publicar</button>
@@ -73,13 +73,47 @@ export const viewFeed = (user) => {
                     <button id="deleteCrud">Delete</button>  
                 </div>
             </div>
-            <div class="textBoxStyle"> 
+            <div id="messagePostContainer" class="textBoxStyle"> 
               <span>${doc.data().name}</span>
               <span>${doc.data().email}</span>
               <span>${doc.data().date}</span> 
-              <span>${doc.data().text}</span>
+              <input class="postEditCrud">${doc.data().text}</input>
             </div>
           </div>`;
+
+          const editPost = (uid, text) => {
+            const postEditCrud = document.querySelector('.postEditCrud');
+            postEditCrud.value = text;
+
+            const buttonSave = document.createElement('button');
+            buttonSave.setAttribute('id', 'buttonSave');
+            buttonSave.innerHTML = 'Guardar';
+            const messagePostContainer = document.getElementById('messagePostContainer');
+            messagePostContainer.appendChild(buttonSave);
+
+
+            buttonSave.onclick = () => {
+              const postRef = firebase.firestore().collection('Publicaciones').doc(uid);
+
+              // Set the "capital" field of the city 'DC'
+              return postRef.update({
+                text: postEditCrud.value,
+              })
+                .then(() => {
+                  console.log('Document successfully updated!');
+                })
+                .catch((error) => {
+                  // The document probably doesn't exist.
+                  console.error('Error updating document: ', error);
+                });
+            };
+          };
+
+          const buttonEdit = document.querySelector('#editCrud');
+          buttonEdit.addEventListener('click', () => {
+            alert('¿Quieres editar este mensaje?');
+            editPost(doc.id, doc.data().text);
+          });
 
           const deletePost = (uid) => {
             firebase.firestore().collection('Publicaciones').doc(uid).delete()
