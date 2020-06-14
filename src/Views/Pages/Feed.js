@@ -50,17 +50,17 @@ export const viewFeed = (user) => {
       uid: user.uid,
       email: user.email,
     })
-      .then((result) => { console.log('mensaje guardado'); })
+      .then((result) => { console.log('mensaje guardado', result); })
       .catch(error => console.log(error));
 
     textPublication.value = '';
   });
 
   firebase.firestore().collection('Publicaciones').orderBy('date', 'desc')
-    .onSnapshot(query => {
+    .onSnapshot((query) => {
       feedMessages.innerHTML = '';
       console.log(query);
-      query.forEach(doc => {
+      query.forEach((doc) => {
         console.log(doc.data());
         //  Falta agregar el reverse de la fecha orden descendiente
         if (doc.data().uid === user.uid) {
@@ -77,34 +77,33 @@ export const viewFeed = (user) => {
               <span>${doc.data().name}</span>
               <span>${doc.data().email}</span>
               <span>${doc.data().date}</span> 
-              <input type="text" class="postEditCrud">${doc.data().text}</input>
+              <div id="agregar">
+                <span type="text">${doc.data().text}</span>
+              </div>
             </div>
           </div>`;
 
-          const editPost = (uid, text) => {
-            const postEditCrud = document.querySelector('.postEditCrud');
-            postEditCrud.value = text;
+          const editPost = (uid) => {
+            const agregar = document.querySelector('#agregar');
+            agregar.innerHTML = `
+              <textarea id="postEditCrud">${doc.data().text}</textarea>
+              <button id="buttonSave">Guardar cambios</button>
+              <button id="cancelEditCrud">Cancelar</button>`;
 
-            const buttonSave = document.createElement('button');
-            buttonSave.classList.add('buttonSave');
-            buttonSave.innerHTML = 'Guardar';
-            const messagePostContainer = document.querySelector('.textBoxStyle');
-            messagePostContainer.append(buttonSave);
-
+            const postEditCrud = document.querySelector('#postEditCrud');
+            const buttonSave = document.querySelector('#buttonSave');
+            // const cancelEditCrud = document.querySelector('cancelEditCrud');
 
             buttonSave.onclick = () => {
               const postRef = firebase.firestore().collection('Publicaciones').doc(uid);
-
-              // Set the "capital" field of the city 'DC'
               return postRef.update({
                 text: postEditCrud.value,
               })
                 .then(() => {
                   console.log('Document successfully updated!');
-                  buttonSave.style.display = 'hidden';
+                  agregar.style.display = 'hidden';
                 })
                 .catch((error) => {
-                  // The document probably doesn't exist.
                   console.error('Error updating document: ', error);
                 });
             };
