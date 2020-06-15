@@ -77,8 +77,8 @@ export const viewFeed = (user) => {
               <span>${doc.data().name}</span>
               <span>${doc.data().email}</span>
               <span>${doc.data().date}</span> 
+              <span id="currentText" type="text">${doc.data().text}</span>
               <div id="toAdd">
-                <span type="text">${doc.data().text}</span>
               </div>
             </div>
           </div>`;
@@ -88,6 +88,9 @@ export const viewFeed = (user) => {
           feedMessages.appendChild(containerPost);
 
           const editPost = (uid) => {
+            const currentText = containerPost.querySelector('#currentText');
+            currentText.style.display = 'none';
+
             const toAdd = containerPost.querySelector('#toAdd');
             toAdd.innerHTML = `
               <textarea id="postEditCrud">${doc.data().text}</textarea>
@@ -96,7 +99,12 @@ export const viewFeed = (user) => {
 
             const postEditCrud = toAdd.querySelector('#postEditCrud');
             const buttonSave = toAdd.querySelector('#buttonSave');
-            // const cancelEditCrud = document.querySelector('cancelEditCrud');
+            const cancelEditCrud = document.querySelector('#cancelEditCrud');
+
+            cancelEditCrud.addEventListener('click', () => {
+              toAdd.innerHTML = '';
+              currentText.style.display = 'block';
+            });
 
             buttonSave.onclick = () => {
               const postRef = firebase.firestore().collection('Publicaciones').doc(uid);
@@ -115,8 +123,10 @@ export const viewFeed = (user) => {
 
           const buttonEdit = containerPost.querySelector('.editCrud');
           buttonEdit.addEventListener('click', () => {
-            alert('¿Quieres editar este mensaje?');
-            editPost(doc.id, doc.data().text);
+            const result = window.confirm('¿Quieres editar este mensaje?');
+            if (result) {
+              editPost(doc.id, doc.data().text);
+            }
           });
 
           const deletePost = (uid) => {
@@ -131,8 +141,10 @@ export const viewFeed = (user) => {
 
           const buttonDelete = containerPost.querySelector('#deleteCrud');
           buttonDelete.addEventListener('click', () => {
-            alert('¿Quieres eliminar este mensaje?');
-            deletePost(doc.id);
+            const result = window.confirm('¿Quieres eliminar este mensaje?');
+            if (result) {
+              deletePost(doc.id);
+            }
           });
         } else {
           const postItem = `
