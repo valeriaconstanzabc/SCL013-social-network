@@ -64,7 +64,7 @@ export const viewFeed = (user) => {
         console.log(doc.data());
         //  Falta agregar el reverse de la fecha orden descendiente
         if (doc.data().uid === user.uid) {
-          feedMessages.innerHTML += `
+          const containerPublication = `
           <div id="containerPublication">
             <div id="crudContainer">
               <button type ="button" id="btnCrudOptions"><img src="imagenes/dots1.png" alt="" class="imgOptionsDots" id="imgOptionsDots"></button>
@@ -77,22 +77,34 @@ export const viewFeed = (user) => {
               <span>${doc.data().name}</span>
               <span>${doc.data().email}</span>
               <span>${doc.data().date}</span> 
-              <div id="agregar">
-                <span type="text">${doc.data().text}</span>
+              <span id="currentText" type="text">${doc.data().text}</span>
+              <div id="toAdd">
               </div>
             </div>
           </div>`;
 
+          const containerPost = document.createElement('div');
+          containerPost.innerHTML = containerPublication;
+          feedMessages.appendChild(containerPost);
+
           const editPost = (uid) => {
-            const agregar = document.querySelector('#agregar');
-            agregar.innerHTML = `
+            const currentText = containerPost.querySelector('#currentText');
+            currentText.style.display = 'none';
+
+            const toAdd = containerPost.querySelector('#toAdd');
+            toAdd.innerHTML = `
               <textarea id="postEditCrud">${doc.data().text}</textarea>
               <button id="buttonSave">Guardar cambios</button>
               <button id="cancelEditCrud">Cancelar</button>`;
 
-            const postEditCrud = document.querySelector('#postEditCrud');
-            const buttonSave = document.querySelector('#buttonSave');
-            // const cancelEditCrud = document.querySelector('cancelEditCrud');
+            const postEditCrud = toAdd.querySelector('#postEditCrud');
+            const buttonSave = toAdd.querySelector('#buttonSave');
+            const cancelEditCrud = document.querySelector('#cancelEditCrud');
+
+            cancelEditCrud.addEventListener('click', () => {
+              toAdd.innerHTML = '';
+              currentText.style.display = 'block';
+            });
 
             buttonSave.onclick = () => {
               const postRef = firebase.firestore().collection('Publicaciones').doc(uid);
@@ -101,7 +113,7 @@ export const viewFeed = (user) => {
               })
                 .then(() => {
                   console.log('Document successfully updated!');
-                  agregar.style.display = 'hidden';
+                  toAdd.style.display = 'hidden';
                 })
                 .catch((error) => {
                   console.error('Error updating document: ', error);
@@ -109,10 +121,12 @@ export const viewFeed = (user) => {
             };
           };
 
-          const buttonEdit = document.querySelector('.editCrud');
+          const buttonEdit = containerPost.querySelector('.editCrud');
           buttonEdit.addEventListener('click', () => {
-            alert('¿Quieres editar este mensaje?');
-            editPost(doc.id, doc.data().text);
+            const result = window.confirm('¿Quieres editar este mensaje?');
+            if (result) {
+              editPost(doc.id, doc.data().text);
+            }
           });
 
           const deletePost = (uid) => {
@@ -125,10 +139,12 @@ export const viewFeed = (user) => {
               });
           };
 
-          const buttonDelete = document.querySelector('#deleteCrud');
+          const buttonDelete = containerPost.querySelector('#deleteCrud');
           buttonDelete.addEventListener('click', () => {
-            alert('¿Quieres eliminar este mensaje?');
-            deletePost(doc.id);
+            const result = window.confirm('¿Quieres eliminar este mensaje?');
+            if (result) {
+              deletePost(doc.id);
+            }
           });
         } else {
           const postItem = `
