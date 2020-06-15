@@ -17,7 +17,7 @@ export const viewFeed = (user) => {
             <button type="submit" id="btnPublish" class="btnPublish">Publicar</button>
           </div>
           </form>
-        <div id="messagesContainer">PUBLICACIONES DE LOS DEMAS</div>  
+        <div id="messagesContainer"></div>  
         </div>
       </div>
     </div>`;
@@ -49,6 +49,7 @@ export const viewFeed = (user) => {
       text: textPublication.value,
       uid: user.uid,
       email: user.email,
+      name: user.displayName,
     })
       .then((result) => { console.log('mensaje guardado', result); })
       .catch(error => console.log(error));
@@ -66,27 +67,74 @@ export const viewFeed = (user) => {
         if (doc.data().uid === user.uid) {
           const containerPublication = `
           <div id="containerPublication">
-            <div id="crudContainer">
-              <button type ="button" id="btnCrudOptions"><img src="imagenes/dots1.png" alt="" class="imgOptionsDots" id="imgOptionsDots"></button>
+            <div id="containerNameAndEdit">
+              <span class="namePublication">${doc.data().name}</span>
+              <div id="crudContainer">
+                <button type ="button" id="btnCrudOptions"><img src="imagenes/dots1.png" alt="" class="imgOptionsDots" id="imgOptionsDots"></button>
                 <div class="dropdownContentEdit">
-                    <button id="editCrud" class="editCrud">Editar</button>
-                    <button id="deleteCrud">Delete</button>  
+                  <button id="editCrud" class="editCrud">Editar</button>
+                  <button id="deleteCrud">Delete</button>  
                 </div>
-            </div>
-            <div id="messagePostContainer" class="textBoxStyle"> 
-              <span>${doc.data().name}</span>
-              <span>${doc.data().email}</span>
-              <span>${doc.data().date}</span> 
-              <span id="currentText" type="text">${doc.data().text}</span>
-              <div id="toAdd">
               </div>
             </div>
+
+            <div id="messagePostContainer" class="textBoxStyle"> 
+              <span>${doc.data().email}</span>
+              <span>${doc.data().date}</span> 
+              <div id="edit" class="edit">
+                <span id="currentText" type="text">${doc.data().text}</span>
+              </div>
+              <div id="toAdd">
+            </div>
+
+            <div id="reactions">
+              <div id="likes">
+                <button type ="button" id="btnLike"><img src="imagenes/twitter.png" class="imgOptionsDots" id="imgOptionsDots"></button>
+                <div id="likesContainer"></div>
+              </div>
+            </div>
+            
           </div>`;
 
           const containerPost = document.createElement('div');
           containerPost.innerHTML = containerPublication;
           feedMessages.appendChild(containerPost);
 
+          // ----------------------------FUNCION LIKE---------------------------->
+          /* const postLike = (id) => {
+            const user = firebase.auth().currentUser;
+            console.log('Entrando al like');
+
+            firebase.firestore().collection('Publicaciones').doc(id).get()
+              .then((query) => {
+                const post = query.data();
+
+                if (post.like == null || post.like === '') {
+                  post.like = [];
+                  console.log('entro al like vacio');
+                } if (post.like.includes(user.uid)) {
+                  for (let i = 0; i < post.like.length; i += 1) {
+                    if (post.like[i] === user.uid) {
+                      post.like.splice(i, 1);
+
+                      firebase.firestore().collection('Publicaciones').doc(id).update({
+                        like: post.like,
+                      });
+                    }
+                  }
+                } else {
+                  post.like.push(user.uid);
+                  firebase.firestore().collection('Publicaciones').doc(id).update({
+                    like: post.like,
+                  });
+                }
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          }; */
+
+          // ----------------------------FUNCION EDITAR POST---------------------------->
           const editPost = (uid) => {
             const currentText = containerPost.querySelector('#currentText');
             currentText.style.display = 'none';
@@ -94,8 +142,14 @@ export const viewFeed = (user) => {
             const toAdd = containerPost.querySelector('#toAdd');
             toAdd.innerHTML = `
               <textarea id="postEditCrud">${doc.data().text}</textarea>
-              <button id="buttonSave">Guardar cambios</button>
-              <button id="cancelEditCrud">Cancelar</button>`;
+              <div id="buttonsSaveAndEdit">
+                <div>
+                  <button id="buttonSave">Guardar cambios</button>
+                </div>
+                <div>
+                  <button id="cancelEditCrud">Cancelar</button>
+                </div>
+              </div>`;
 
             const postEditCrud = toAdd.querySelector('#postEditCrud');
             const buttonSave = toAdd.querySelector('#buttonSave');
@@ -121,6 +175,22 @@ export const viewFeed = (user) => {
             };
           };
 
+          // ----------------------------BOTÓN DAR LIKE---------------------------->
+          /* const btnLike = document.querySelector('#btnLike');
+          btnLike.addEventListener('click', () => {
+            postLike(doc.id);
+            console.log(doc.data().like.length);
+          });
+
+          const reaction = feedMessages.querySelector('#reactions');
+          const likesContainer = reaction.querySelector('#likesContainer');
+          const likeCounter = doc.data().like.length;
+          likesContainer.innerHTML = `
+              <span id="likesNumber">${likeCounter}</span>`;
+
+          reaction.appendChild(likesContainer); */
+
+          // ----------------------------BOTÓN EDDITAR POST---------------------------->
           const buttonEdit = containerPost.querySelector('.editCrud');
           buttonEdit.addEventListener('click', () => {
             const result = window.confirm('¿Quieres editar este mensaje?');
@@ -129,6 +199,7 @@ export const viewFeed = (user) => {
             }
           });
 
+          // ----------------------------FUNCION ELIMINAR POST---------------------------->
           const deletePost = (uid) => {
             firebase.firestore().collection('Publicaciones').doc(uid).delete()
               .then(() => {
@@ -139,6 +210,7 @@ export const viewFeed = (user) => {
               });
           };
 
+          // ----------------------------FUNCION ELIMINAR POST---------------------------->
           const buttonDelete = containerPost.querySelector('#deleteCrud');
           buttonDelete.addEventListener('click', () => {
             const result = window.confirm('¿Quieres eliminar este mensaje?');
@@ -150,12 +222,14 @@ export const viewFeed = (user) => {
           const postItem = `
           <div id="containerPublication">
             <div class="textBoxStyle">  
-              <span>${doc.data().name}</span>
-              <span>${doc.data().email}</span>
-              <span>${doc.data().date}</span> 
-              <span>${doc.data().text}</span>
-            </div>
-          </div>`;
+            <span class="namePublication">${doc.data().name}</span>
+            <span>${doc.data().email}</span>
+            <span>${doc.data().date}</span>
+            <div class="edit">
+              <span type="text">${doc.data().text}</span>
+            </div> 
+          </div>
+        </div>`;
 
           const containerPost = document.createElement('div');
           containerPost.classList.add('containerPost');
