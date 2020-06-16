@@ -5,7 +5,7 @@ export const viewSignIn = () => {
   const viewSignInContainer = document.getElementById('page_container');
   viewSignInContainer.innerHTML = `
     <div id="containerSignIn">
-      <form>
+      <form id="signInForm">
         <div id="modalSignIn">
           <h1>¡Únete a Lofche!</h1>
           <hr><br><br>
@@ -38,18 +38,27 @@ export const viewSignIn = () => {
           </div>
 
           <div class="buttonNext">
-            <button type="button" id="btnRegister" class="register">Registrar</button>
+            <button type="submit" id="btnRegister" class="register">Registrar</button>
           </div>
         </div>
       </form>
     </div>`;
-  const buttonRegister = viewSignInContainer.querySelector('#btnRegister');
-  buttonRegister.addEventListener('click', async () => {
-    const name = viewSignInContainer.querySelector('#name').value;
-    const email = viewSignInContainer.querySelector('#email').value;
-    //  const district = viewSignInContainer.querySelector('#district').value;
-    const password = viewSignInContainer.querySelector('#password').value;
-    register(name, email, password);
+
+  const signInForm = viewSignInContainer.querySelector('#signInForm');
+  //  const buttonRegister = signInForm.querySelector('#btnRegister');
+  const name = viewSignInContainer.querySelector('#name');
+  const email = viewSignInContainer.querySelector('#email');
+  const district = viewSignInContainer.querySelector('#district');
+  const password = viewSignInContainer.querySelector('#password');
+  signInForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    register({
+      name: name.value,
+      email: email.value,
+      district: district.value,
+      password: password.value,
+    });
+    signInForm.reset();
   });
 
   const buttonGoogle = viewSignInContainer.querySelector('#btngoogle');

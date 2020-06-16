@@ -3,11 +3,13 @@ import { viewFooter } from '../Components/Footer.js';
 //  import { observer } from '../../lib/register.js'
 
 export const viewFeed = (user) => {
-  //  const user = user;
+  if (!user.emailVerified) {
+    return;
+  }
+
   const pageContainer = document.getElementById('page_container');
 
-  if (user.emailVerified) {
-    pageContainer.innerHTML = `
+  pageContainer.innerHTML = `
     <div id="containerLofche">
       <div id="feedLofche">
         <form id="publicationFeed">
@@ -22,17 +24,17 @@ export const viewFeed = (user) => {
       </div>
     </div>`;
 
-    viewHeaderFeed();
-    viewFooter();
-  }
+  viewHeaderFeed();
+  viewFooter();
 
-  const feedMessages = document.querySelector('#messagesContainer');
-  const publicationFeed = document.querySelector('#publicationFeed');
-  const textPublication = document.querySelector('#textPublication');
-  const buttonCancel = document.querySelector('#btnCancel');
+  const feedMessages = pageContainer.querySelector('#messagesContainer');
+  const publicationFeed = pageContainer.querySelector('#publicationFeed');
+  const textPublication = pageContainer.querySelector('#textPublication');
+  const buttonCancel = pageContainer.querySelector('#btnCancel');
 
-  buttonCancel.addEventListener('click', () => {
-    textPublication.value = '';
+  buttonCancel.addEventListener('click', (event) => {
+    // eslint-disable-next-line no-param-reassign
+    event.textPublication.value = '';
   });
 
   publicationFeed.addEventListener('submit', (event) => {
@@ -240,5 +242,6 @@ export const viewFeed = (user) => {
       });
     });
 
+  // eslint-disable-next-line consistent-return
   return pageContainer;
 };
