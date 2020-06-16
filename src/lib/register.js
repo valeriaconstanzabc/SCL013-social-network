@@ -12,21 +12,21 @@ export const verificate = () => {
   });
 };
 
-export const register = (name, email, password) => {
-  firebase.auth().createUserWithEmailAndPassword(email, password)
+export const register = (userDetails) => {
+  firebase.auth().createUserWithEmailAndPassword(userDetails.email, userDetails.password)
+    .then(cred => firebase.firestore().collection('Usuarios').doc(cred.user.uid).set({
+      name: userDetails.name,
+      district: userDetails.district,
+    }))
     .then(() => {
+      console.log('nombre y comuna guardados con el registro');
       verificate();
       viewRedirecting();
     })
     .catch((error) => {
+      console.log(error);
       viewSignInError();
     });
-
-  firebase.firestore().collection('Publicaciones').add({
-    name: name,
-  })
-    .then((result) => { console.log('mensaje guardado'); })
-    .catch(error => console.log(error));
 };
 
 export const logIn = (emailLogin, passwordLogin) => {
