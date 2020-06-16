@@ -29,6 +29,22 @@ export const register = (userDetails) => {
     });
 };
 
+/* export const register = (email, password, name) => {
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then(result => {
+      result.user.updateProfile({
+        displayName: name,
+      });
+      console.log('nombre y comuna guardados con el registro');
+      verificate();
+      viewRedirecting();
+    })
+    .catch((error) => {
+      console.log(error);
+      viewSignInError();
+    });
+}; */
+
 export const logIn = (emailLogin, passwordLogin) => {
   firebase.auth().signInWithEmailAndPassword(emailLogin, passwordLogin)
     .catch((error) => {

@@ -46,19 +46,14 @@ export const viewSignIn = () => {
 
   const signInForm = viewSignInContainer.querySelector('#signInForm');
   //  const buttonRegister = signInForm.querySelector('#btnRegister');
-  const name = viewSignInContainer.querySelector('#name');
-  const email = viewSignInContainer.querySelector('#email');
-  const district = viewSignInContainer.querySelector('#district');
-  const password = viewSignInContainer.querySelector('#password');
+  const name = viewSignInContainer.querySelector('#name').value;
+  const email = viewSignInContainer.querySelector('#email').value;
+  // const district = viewSignInContainer.querySelector('#district').value;
+  const password = viewSignInContainer.querySelector('#password').value;
   signInForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    register({
-      name: name.value,
-      email: email.value,
-      district: district.value,
-      password: password.value,
-    });
-    signInForm.reset();
+    register(email, password, name);
+    // signInForm.reset();
   });
 
   const buttonGoogle = viewSignInContainer.querySelector('#btngoogle');

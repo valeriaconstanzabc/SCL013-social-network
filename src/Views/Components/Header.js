@@ -19,6 +19,7 @@ export const viewHeader = () => {
 
 export const viewHeaderFeed = () => {
   const headerContainer = document.getElementById('header_container');
+  const user = firebase.auth().currentUser;
   headerContainer.innerHTML = `
   <div id="headerFeed">
     <div id="headerNotificationFeed">
@@ -42,7 +43,7 @@ export const viewHeaderFeed = () => {
     </a>
   </div> 
     <div id="headerPerfilButton">
-      <button type ="button" id="btnHeaderOptions">Usuario</button>
+      <img type ="button" id="btnHeaderOptions" src="${user.photoURL}"></img>
             <div class="dropdownContent">
                 <a href="#/profile" id="goToProfile">Ir al perfil</a>
                 <a href="#/logout" id="logout">Cerrar sesión</a>  
