@@ -444,6 +444,21 @@
         margin-bottom: 25px;
         cursor: pointer;
 }
+.containerPassword{
+    display: flex;
+}
+    .passwordHidden{
+        display: flex;
+        margin-left: 3px;
+        border: 0;
+        cursor: pointer;
+        background:none;
+        justify-content: center;
+        align-items: center;
+    }
+    .eyePassword{
+        width: 25px;
+    }
 /*-----------------------------------------------------------------------------------------------------
             FEED
 -----------------------------------------------------------------------------------------------------*/

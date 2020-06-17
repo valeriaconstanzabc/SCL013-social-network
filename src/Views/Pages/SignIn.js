@@ -1,5 +1,6 @@
 import { login, loginFacebook } from '../../lib/authentication.js';
 import { register } from '../../lib/register.js';
+import { hiddenPassword } from '../Components/Others.js';
 
 export const viewSignIn = () => {
   const viewSignInContainer = document.getElementById('page_container');
@@ -20,7 +21,10 @@ export const viewSignIn = () => {
           <input type="text" id="district" placeholder="Ejemplo: Puente alto" name="comuna" required>
 
           <label for="psw" class="text"><b>Contraseña</b></label>
-          <input type="password" id ="password" placeholder="Ingresa Contraseña" name="psw" required>
+          <div class="containerPassword">
+            <input type="password" id="password" class="password" placeholder="Ingresa Contraseña" name="psw" required>
+            <span type="button" class="passwordHidden"><img src="imagenes/ojo.png" class="eyePassword"></span>
+          </div>
 
           <div class="error" id="errorMessage"></div>
 
@@ -45,25 +49,40 @@ export const viewSignIn = () => {
     </div>`;
 
   const signInForm = viewSignInContainer.querySelector('#signInForm');
-  //  const buttonRegister = signInForm.querySelector('#btnRegister');
-  const name = viewSignInContainer.querySelector('#name').value;
-  const email = viewSignInContainer.querySelector('#email').value;
-  // const district = viewSignInContainer.querySelector('#district').value;
-  const password = viewSignInContainer.querySelector('#password').value;
+  const name = viewSignInContainer.querySelector('#name');
+  const email = viewSignInContainer.querySelector('#email');
+  const district = viewSignInContainer.querySelector('#district');
+  const password = viewSignInContainer.querySelector('#password');
+  const buttonGoogle = viewSignInContainer.querySelector('#btngoogle');
+  const buttonFacebook = viewSignInContainer.querySelector('#btnFacebook');
+  const passwordHidden = viewSignInContainer.querySelector('.passwordHidden');
+
+  // ------------EVENTO PARA LOGUEARSE-------------------------------------->
   signInForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    register(email, password, name);
-    // signInForm.reset();
+    register({
+      name: name.value,
+      email: email.value,
+      district: district.value,
+      password: password.value,
+    });
+    signInForm.reset();
   });
 
-  const buttonGoogle = viewSignInContainer.querySelector('#btngoogle');
+  // ------------EVENTO PARA INICIAR SESIÓN CON GOOGLE---------------------->
   buttonGoogle.addEventListener('click', async () => {
     login();
   });
 
-  const buttonFacebook = viewSignInContainer.querySelector('#btnFacebook');
+  // ------------EVENTO PARA INICIAR SESIÓN CON FACEBOOK-------------------->
   buttonFacebook.addEventListener('click', async () => {
     loginFacebook();
   });
+
+  // ------------EVENTO PARA ESCONDER CONTRASEÑA----------------------------->
+  passwordHidden.addEventListener('click', async () => {
+    hiddenPassword();
+  });
+
   return viewSignInContainer;
 };

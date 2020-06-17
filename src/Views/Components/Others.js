@@ -1,3 +1,4 @@
+// ------------FUNCION ERROR DE USUARIO O CONTRASEÑA-------------------------->
 export const viewLoginError = () => {
   const errorContainer = document.getElementById('errorMessage');
   errorContainer.innerHTML = `
@@ -7,6 +8,7 @@ export const viewLoginError = () => {
   return errorContainer;
 };
 
+// ------------FUNCION ERROR DE CONTRASEÑA------------------------------------>
 export const viewSignInError = () => {
   const errorContainer = document.getElementById('errorMessage');
   errorContainer.innerHTML = `
@@ -16,6 +18,7 @@ export const viewSignInError = () => {
   return errorContainer;
 };
 
+// ------------FUNCION REDIRECCIÓN DE AUTENTICACIÓN---------------------------->
 export const viewRedirecting = () => {
   const viewSignInContainer = document.getElementById('page_container');
   viewSignInContainer.innerHTML = `
@@ -32,4 +35,14 @@ export const viewRedirecting = () => {
   });
 
   return viewSignInContainer;
+};
+
+// ------------FUNCION ESCONDER CONTRASEÑA-------------------------------------->
+export const hiddenPassword = () => {
+  const x = document.querySelector('.password');
+  if (x.type === 'password') {
+    x.type = 'text';
+  } else {
+    x.type = 'password';
+  }
 };

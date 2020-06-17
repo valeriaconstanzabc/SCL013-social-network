@@ -1,40 +1,6 @@
 import { viewHeaderFeed } from '../Components/Header.js';
 import { viewFooter } from '../Components/Footer.js';
 
-// ----------------------------FUNCION EDITAR POST---------------------------->
-const editProfileUser = () => {
-  const profileDescription = document.querySelector('#profileDescription');
-  // profileDescription.style.display = 'none';
-  const profileAge = document.querySelector('#profileAge');
-  // profileAge.style.display = 'none';
-  const profileLocation = document.querySelector('profileLocation');
-  // profileLocation.style.display = 'none';
-
-  const toAdd = document.querySelector('#toAdd');
-  toAdd.innerHTML = `
-    <textarea id="editProfileUserr"></textarea>`;
-
-  const editProfileUserr = document.querySelector('#editProfileUserr');
-  const addButton = document.querySelector('.addButton');
-  addButton.innerHTML = `
-  <button id="saveProfile">Guardar</button>`;
-
-  const saveProfile = document.querySelector('#saveProfile');
-  saveProfile.onclick = () => {
-    firebase.firestore().collection('InfoDePerfil').add({
-      description: editProfileUserr.value,
-    }).then(() => {
-      console.log('Document successfully updated!');
-      toAdd.style.display = 'hidden';
-      addButton.style.display = 'hidden';
-      editProfileUserr.value = '';
-    })
-      .catch((error) => {
-        console.error('Error updating document: ', error);
-      });
-  };
-};
-
 export const viewProfile = () => {
   const viewProfileContainer = document.getElementById('page_container');
   const user = firebase.auth().currentUser;
@@ -43,10 +9,10 @@ export const viewProfile = () => {
     <div id="containerPageProfile">
       <div id="containerProfile">
         <div id="containerDescriptionUsername">
-            <p id="nameProfile">${user.displayName}</p>
+            <p id="nameProfile">${user.displayName || user.email}</p>
             <label for="description"><b>Descripción:</b></label>
             <span id="profileDescription"></span>
-            <div id="toAdd">${user.description}</div>
+            <div id="toAdd">${infoUser.description}</div>
             <label for="mail"><b>Mail de contacto:</b></label>
             <span class="profileMail">${user.email}</span>
             <label for="age"><b>Edad:</b></label>
@@ -67,6 +33,40 @@ export const viewProfile = () => {
   viewHeaderFeed();
   viewFooter();
 
+  // ----------------------------FUNCION EDITAR POST---------------------------->
+  const editProfileUser = () => {
+    const profileDescription = document.querySelector('#profileDescription');
+    // profileDescription.style.display = 'none';
+    const profileAge = document.querySelector('#profileAge');
+    // profileAge.style.display = 'none';
+    const profileLocation = document.querySelector('profileLocation');
+    // profileLocation.style.display = 'none';
+
+    const toAdd = document.querySelector('#toAdd');
+    toAdd.innerHTML = `
+      <textarea id="editProfileUserr"></textarea>`;
+
+    const editProfileUserr = document.querySelector('#editProfileUserr');
+    const addButton = document.querySelector('.addButton');
+    addButton.innerHTML = `
+    <button id="saveProfile">Guardar</button>`;
+
+    const saveProfile = document.querySelector('#saveProfile');
+    saveProfile.addEventListener('click', () => {
+      firebase.firestore().collection('InfoDePerfil').add({
+        description: editProfileUserr.value,
+      }).then(() => {
+        console.log('Document successfully updated!');
+        toAdd.style.display = 'hidden';
+        addButton.style.display = 'hidden';
+        editProfileUserr.value = '';
+      })
+        .catch((error) => {
+          console.error('Error updating document: ', error);
+        });
+    });
+  };
+
   // ----------------------------BOTÓN EDDITAR POST---------------------------->
   const editProfile = document.querySelector('#editProfile');
   editProfile.addEventListener('click', (doc) => {
@@ -75,5 +75,10 @@ export const viewProfile = () => {
       editProfileUser(doc.id);
     }
   });
+
+  /* const containerImgAndButton = document.querySelector('#containerImgAndButton');
+  containerImgAndButton.innerHTML = `
+    <img class="imgProfile" src="https://rciminternet.com/wp-content/uploads/2019/04/usuario.png">`;
+*/
   return viewProfileContainer;
 };

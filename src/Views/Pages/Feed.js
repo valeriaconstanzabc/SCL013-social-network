@@ -70,7 +70,7 @@ export const viewFeed = (user) => {
           const containerPublication = `
           <div id="containerPublication">
             <div id="containerNameAndEdit">
-              <span class="namePublication">${doc.data().name}</span>
+              <span class="namePublication">${doc.data().name || doc.data().email}</span>
               <div id="crudContainer">
                 <button type ="button" id="btnCrudOptions"><img src="imagenes/dots1.png" alt="" class="imgOptionsDots" id="imgOptionsDots"></button>
                 <div class="dropdownContentEdit">
@@ -103,7 +103,7 @@ export const viewFeed = (user) => {
           feedMessages.appendChild(containerPost);
 
           // ----------------------------FUNCION LIKE---------------------------->
-          /* const postLike = (id) => {
+          const postLike = (id) => {
             const user = firebase.auth().currentUser;
             console.log('Entrando al like');
 
@@ -134,7 +134,20 @@ export const viewFeed = (user) => {
               .catch((error) => {
                 console.log(error);
               });
-          }; */
+          };
+
+          // ----------------------------BOTÓN DAR LIKE---------------------------->
+          const btnLike = document.querySelector('#btnLike');
+          btnLike.addEventListener('click', () => {
+            postLike(doc.id);
+          });
+
+          const reaction = feedMessages.querySelector('#reactions');
+          const likesContainer = reaction.querySelector('#likesContainer');
+          likesContainer.innerHTML = `
+              <span id="likesNumber">${doc.data().like}</span>`;
+
+          reaction.appendChild(likesContainer);
 
           // ----------------------------FUNCION EDITAR POST---------------------------->
           const editPost = (uid) => {
@@ -177,21 +190,6 @@ export const viewFeed = (user) => {
             };
           };
 
-          // ----------------------------BOTÓN DAR LIKE---------------------------->
-          /* const btnLike = document.querySelector('#btnLike');
-          btnLike.addEventListener('click', () => {
-            postLike(doc.id);
-            console.log(doc.data().like.length);
-          });
-
-          const reaction = feedMessages.querySelector('#reactions');
-          const likesContainer = reaction.querySelector('#likesContainer');
-          const likeCounter = doc.data().like.length;
-          likesContainer.innerHTML = `
-              <span id="likesNumber">${likeCounter}</span>`;
-
-          reaction.appendChild(likesContainer); */
-
           // ----------------------------BOTÓN EDDITAR POST---------------------------->
           const buttonEdit = containerPost.querySelector('.editCrud');
           buttonEdit.addEventListener('click', () => {
@@ -212,7 +210,7 @@ export const viewFeed = (user) => {
               });
           };
 
-          // ----------------------------FUNCION ELIMINAR POST---------------------------->
+          // ----------------------------BOTÓN ELIMINAR POST---------------------------->
           const buttonDelete = containerPost.querySelector('#deleteCrud');
           buttonDelete.addEventListener('click', () => {
             const result = window.confirm('¿Quieres eliminar este mensaje?');
