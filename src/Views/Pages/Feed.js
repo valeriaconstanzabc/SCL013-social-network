@@ -60,10 +60,14 @@ export const viewFeed = (user) => {
     textPublication.value = '';
   });
 
-  firebase.firestore().collection('Usuarios').where()
-    .onSnapshot((doc) => {
-      console.log('lalalalallala', doc.data());
+  const nameMatch = firebase.firestore().collection('Usuarios').where('email', '==', `${user.email}`)// compararlo con mail
+    .onSnapshot((querySnapshot) => {
+      console.log('Aqui casi trayendo el nombre', querySnapshot);
+      querySnapshot.forEach((doc) => {
+        console.log(doc.data().name);
+      });
     });
+
   firebase.firestore().collection('Publicaciones').orderBy('date', 'desc')
     .onSnapshot((query) => {
       feedMessages.innerHTML = '';
@@ -75,7 +79,7 @@ export const viewFeed = (user) => {
           const containerPublication = `
           <div id="containerPublication">
             <div id="containerNameAndEdit">
-              <span class="namePublication">${doc.data().name || doc.data().email}</span>
+              <span class="namePublication">${doc.data().name || nameMatch}</span>
               <div id="crudContainer">
                 <button type ="button" id="btnCrudOptions"><img src="imagenes/dots1.png" alt="" class="imgOptionsDots" id="imgOptionsDots"></button>
                 <div class="dropdownContentEdit">

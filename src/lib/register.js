@@ -17,6 +17,7 @@ export const register = (userDetails) => {
     .then(cred => firebase.firestore().collection('Usuarios').doc(cred.user.uid).set({
       name: userDetails.name,
       district: userDetails.district,
+      email: userDetails.email,
     }))
     .then(() => {
       console.log('nombre y comuna guardados con el registro');
