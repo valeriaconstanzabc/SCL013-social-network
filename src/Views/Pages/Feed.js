@@ -52,6 +52,7 @@ export const viewFeed = (user) => {
       uid: user.uid,
       email: user.email,
       name: user.displayName,
+      like: [],
     })
       .then((result) => { console.log('mensaje guardado', result); })
       .catch(error => console.log(error));
@@ -59,6 +60,10 @@ export const viewFeed = (user) => {
     textPublication.value = '';
   });
 
+  firebase.firestore().collection('Usuarios').where()
+    .onSnapshot((doc) => {
+      console.log('lalalalallala', doc.data());
+    });
   firebase.firestore().collection('Publicaciones').orderBy('date', 'desc')
     .onSnapshot((query) => {
       feedMessages.innerHTML = '';
@@ -144,8 +149,9 @@ export const viewFeed = (user) => {
 
           const reaction = feedMessages.querySelector('#reactions');
           const likesContainer = reaction.querySelector('#likesContainer');
+          console.log(doc.data().like);
           likesContainer.innerHTML = `
-              <span id="likesNumber">${doc.data().like}</span>`;
+              <span id="likesNumber">${(doc.data().like).length}</span>`;
 
           reaction.appendChild(likesContainer);
 
