@@ -1,6 +1,6 @@
 import { viewHeaderFeed } from '../Components/Header.js';
 import { viewFooter } from '../Components/Footer.js';
-import { postLike, deletePost } from '../../lib/firebase-functions.js';
+import { postLike, deletePost, addPostsData } from '../../lib/firebase-functions.js';
 
 export const viewFeed = (user) => {
   if (!user.emailVerified) {
@@ -43,27 +43,18 @@ export const viewFeed = (user) => {
     if (!textPublication.value.trim()) {
       return;
     }
-    const ts = new Date();
-    firebase.firestore().collection('Publicaciones').add({
-      date: ts.toLocaleString(),
-      text: textPublication.value,
-      uid: user.uid,
-      email: user.email,
-      name: user.displayName,
-      like: [],
-    })
-      .then((result) => { console.log('mensaje guardado', result); })
-      .catch(error => console.log(error));
+    addPostsData(user, textPublication);
 
     textPublication.value = '';
   });
 
-  const nameMatch = firebase.firestore().collection('Usuarios').where('email', '==', `${user.email}`)// compararlo con mail
+  firebase.firestore().collection('Usuarios').where('email', '==', `${user.email}`)
     .onSnapshot((querySnapshot) => {
       console.log('Aqui casi trayendo el nombre', querySnapshot);
-      querySnapshot.forEach((doc) => {
+      querySnapshot.forEach(() => {
       });
     });
+
 
   firebase.firestore().collection('Publicaciones').orderBy('date', 'desc')
     .onSnapshot((query) => {
@@ -73,7 +64,7 @@ export const viewFeed = (user) => {
           const containerPublication = `
           <div id="containerPublication">
             <div id="containerNameAndEdit">
-              <span class="namePublication">${doc.data().name || nameMatch}</span>
+              <span class="namePublication">${doc.data().displayName || doc.data().email}</span>
               <div id="crudContainer">
                 <button type ="button" id="btnCrudOptions"><img src="imagenes/dots1.png" alt="" class="imgOptionsDots" id="imgOptionsDots"></button>
                 <div class="dropdownContentEdit">
@@ -94,7 +85,7 @@ export const viewFeed = (user) => {
 
             <div class="reactions">
               <div class="likes">
-                <button type ="button" class="btnLike"><img src="imagenes/heart.png" class="imgOptionsDots" class="imgOptionsDots"></button>
+                <button type ="button" class="btnLike-${doc.uid}"><img src="imagenes/heart.png" class="imgOptionsDots" class="imgOptionsDots"></button>
                 <div class="likesContainer"></div>
               </div>
             </div>
@@ -106,7 +97,7 @@ export const viewFeed = (user) => {
           feedMessages.appendChild(containerPost);
 
           // ----------------------------BOTÓN DAR LIKE---------------------------->
-          const btnLike = document.querySelector('.btnLike');
+          const btnLike = document.querySelector(`.btnLike-${doc.uid}`);
           btnLike.addEventListener('click', () => {
             postLike(doc.id);
           });

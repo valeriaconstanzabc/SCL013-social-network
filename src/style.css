@@ -36,7 +36,7 @@
 #errorContainer{
     margin: 0;
     padding: 0px;
-    font-family: arial;
+    font-family: 'Actor', sans-serif;
     height: 700px;
 
     background-image: url("imagenes/FondoSinVentanas.png");
@@ -562,7 +562,6 @@
                 border-radius: 6px;
                 border: 0px;
                 background-color: Transparent;
-                cursor: pointer;
             }
             /* Change color of dropdown links on hover */
             .dropdownContentEdit button:hover {background-color: #ee8078;}

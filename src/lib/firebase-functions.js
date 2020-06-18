@@ -5,7 +5,7 @@ export const login = () => {
 
   firebase.auth().signInWithPopup(provider).then((result) => {
     //  This gives you a Google Access Token. You can use it to access the Google API.
-    const token = result.credential.accessToken;
+    //  const token = result.credential.accessToken;
     // The signed-in user info.
     const user = result.user;
     console.log('user', user);
@@ -18,7 +18,10 @@ export const login = () => {
     const email = error.email;
     // The firebase.auth.AuthCredential type that was used.
     const credential = error.credential;
+    console.log('error', errorCode);
     console.log('error', errorMessage);
+    console.log('error', email);
+    console.log('error', credential);
     // ...
   });
 };
@@ -32,6 +35,7 @@ export const loginFacebook = () => {
     // The signed-in user info.
     const user = result.user;
     console.log('user', user);
+    console.log('user', token);
     // ...
   }).catch((error) => {
     // Handle Errors here.
@@ -42,6 +46,9 @@ export const loginFacebook = () => {
     // The firebase.auth.AuthCredential type that was used.
     const credential = error.credential;
     console.log('error', errorMessage);
+    console.log('error', errorCode);
+    console.log('error', email);
+    console.log('error', credential);
     // ...
   });
 };
@@ -91,4 +98,19 @@ export const deletePost = (uid) => {
     .catch((error) => {
       console.error('Error removing document: ', error);
     });
+};
+
+// ----------------------------FUNCION AGREGAR DATOS POST--------------------------->
+
+export const addPostsData = (user, textPublication) => {
+  firebase.firestore().collection('Publicaciones').add({
+    date: new Date().toLocaleString(),
+    text: textPublication.value,
+    uid: user.uid,
+    email: user.email,
+    name: user.displayName,
+    like: [],
+  })
+    .then((result) => { console.log('mensaje guardado', result); })
+    .catch(error => console.log(error));
 };
