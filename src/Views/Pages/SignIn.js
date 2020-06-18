@@ -1,4 +1,4 @@
-import { login, loginFacebook } from '../../lib/authentication.js';
+import { login, loginFacebook } from '../../lib/firebase-functions.js';
 import { register } from '../../lib/register.js';
 import { hiddenPassword } from '../Components/Others.js';
 

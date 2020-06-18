@@ -45,3 +45,50 @@ export const loginFacebook = () => {
     // ...
   });
 };
+
+// ----------------------------FUNCION LIKE---------------------------->
+export const postLike = (id) => {
+  const user = firebase.auth().currentUser;
+  console.log('Entrando al like');
+
+  firebase.firestore().collection('Publicaciones').doc(id).get()
+    .then((query) => {
+      const post = query.data();
+
+      if (post.like == null || post.like === '') {
+        post.like = [];
+        console.log('entro al like vacio');
+      }
+      if (post.like.includes(user.uid)) {
+        for (let i = 0; i < post.like.length; i += 1) {
+          if (post.like[i] === user.uid) {
+            post.like.splice(i, 1);
+
+            firebase.firestore().collection('Publicaciones').doc(id).update({
+              like: post.like,
+            });
+          }
+        }
+      } else {
+        post.like.push(user.uid);
+        firebase.firestore().collection('Publicaciones').doc(id).update({
+          like: post.like,
+        });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+
+// ----------------------------FUNCION ELIMINAR POST---------------------------->
+export const deletePost = (uid) => {
+  firebase.firestore().collection('Publicaciones').doc(uid).delete()
+    .then(() => {
+      console.log('Document successfully deleted!');
+    })
+    .catch((error) => {
+      console.error('Error removing document: ', error);
+    });
+};

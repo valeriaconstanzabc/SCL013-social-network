@@ -1,6 +1,6 @@
 import { viewHeaderFeed } from '../Components/Header.js';
 import { viewFooter } from '../Components/Footer.js';
-//  import { observer } from '../../lib/register.js'
+import { postLike, deletePost } from '../../lib/firebase-functions.js';
 
 export const viewFeed = (user) => {
   if (!user.emailVerified) {
@@ -39,10 +39,8 @@ export const viewFeed = (user) => {
 
   publicationFeed.addEventListener('submit', (event) => {
     event.preventDefault();
-    console.log(textPublication.value);
 
     if (!textPublication.value.trim()) {
-      console.log('input vacío');
       return;
     }
     const ts = new Date();
@@ -64,16 +62,13 @@ export const viewFeed = (user) => {
     .onSnapshot((querySnapshot) => {
       console.log('Aqui casi trayendo el nombre', querySnapshot);
       querySnapshot.forEach((doc) => {
-        console.log(doc.data().name);
       });
     });
 
   firebase.firestore().collection('Publicaciones').orderBy('date', 'desc')
     .onSnapshot((query) => {
       feedMessages.innerHTML = '';
-      console.log(query);
       query.forEach((doc) => {
-        console.log(doc.data());
         if (doc.data().uid === user.uid) {
           const containerPublication = `
           <div id="containerPublication">
@@ -109,40 +104,6 @@ export const viewFeed = (user) => {
           const containerPost = document.createElement('div');
           containerPost.innerHTML = containerPublication;
           feedMessages.appendChild(containerPost);
-
-          // ----------------------------FUNCION LIKE---------------------------->
-          const postLike = (id) => {
-            const user = firebase.auth().currentUser;
-            console.log('Entrando al like');
-
-            firebase.firestore().collection('Publicaciones').doc(id).get()
-              .then((query) => {
-                const post = query.data();
-
-                if (post.like == null || post.like === '') {
-                  post.like = [];
-                  console.log('entro al like vacio');
-                } if (post.like.includes(user.uid)) {
-                  for (let i = 0; i < post.like.length; i += 1) {
-                    if (post.like[i] === user.uid) {
-                      post.like.splice(i, 1);
-
-                      firebase.firestore().collection('Publicaciones').doc(id).update({
-                        like: post.like,
-                      });
-                    }
-                  }
-                } else {
-                  post.like.push(user.uid);
-                  firebase.firestore().collection('Publicaciones').doc(id).update({
-                    like: post.like,
-                  });
-                }
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          };
 
           // ----------------------------BOTÓN DAR LIKE---------------------------->
           const btnLike = document.querySelector('.btnLike');
@@ -207,17 +168,6 @@ export const viewFeed = (user) => {
               editPost(doc.id, doc.data().text);
             }
           });
-
-          // ----------------------------FUNCION ELIMINAR POST---------------------------->
-          const deletePost = (uid) => {
-            firebase.firestore().collection('Publicaciones').doc(uid).delete()
-              .then(() => {
-                console.log('Document successfully deleted!');
-              })
-              .catch((error) => {
-                console.error('Error removing document: ', error);
-              });
-          };
 
           // ----------------------------BOTÓN ELIMINAR POST---------------------------->
           const buttonDelete = containerPost.querySelector('#deleteCrud');
