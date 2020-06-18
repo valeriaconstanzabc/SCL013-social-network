@@ -35,13 +35,6 @@ export const viewProfile = () => {
 
   // ----------------------------FUNCION EDITAR POST---------------------------->
   const editProfileUser = () => {
-    const profileDescription = document.querySelector('#profileDescription');
-    // profileDescription.style.display = 'none';
-    const profileAge = document.querySelector('#profileAge');
-    // profileAge.style.display = 'none';
-    const profileLocation = document.querySelector('profileLocation');
-    // profileLocation.style.display = 'none';
-
     const toAdd = document.querySelector('#toAdd');
     toAdd.innerHTML = `
       <textarea id="editProfileUserr"></textarea>`;

@@ -7,7 +7,7 @@ export const verificate = () => {
   user.sendEmailVerification().then(() => {
     // Email sent.
     console.log('Enviando correo...');
-  }).catch((error) => {
+  }).catch(() => {
     // An error happened.
   });
 };
@@ -21,6 +21,7 @@ export const register = (userDetails) => {
     }))
     .then(() => {
       console.log('nombre y comuna guardados con el registro');
+      console.log('ver si se puede pushear', userDetails.name);
       verificate();
       viewRedirecting();
     })
@@ -48,7 +49,7 @@ export const register = (userDetails) => {
 
 export const logIn = (emailLogin, passwordLogin) => {
   firebase.auth().signInWithEmailAndPassword(emailLogin, passwordLogin)
-    .catch((error) => {
+    .catch(() => {
       viewLoginError();
     });
 };
@@ -58,14 +59,6 @@ export const observer = () => {
     if (user) {
       console.log('existe usuario activo');
       viewFeed(user);
-      //    User is signed in.
-      const displayName = user.displayName;
-      const email = user.email;
-      const emailVerified = user.emailVerified;
-      const photoURL = user.photoURL;
-      const isAnonymous = user.isAnonymous;
-      const uid = user.uid;
-      const providerData = user.providerData;
       console.log('*******************');
       console.log(user.emailVerified);
       console.log('*******************');
