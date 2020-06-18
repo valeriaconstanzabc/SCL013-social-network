@@ -74,7 +74,6 @@ export const viewFeed = (user) => {
       console.log(query);
       query.forEach((doc) => {
         console.log(doc.data());
-        //  Falta agregar el reverse de la fecha orden descendiente
         if (doc.data().uid === user.uid) {
           const containerPublication = `
           <div id="containerPublication">
@@ -98,10 +97,10 @@ export const viewFeed = (user) => {
               <div id="toAdd">
             </div>
 
-            <div id="reactions">
-              <div id="likes">
-                <button type ="button" id="btnLike"><img src="imagenes/twitter.png" class="imgOptionsDots" id="imgOptionsDots"></button>
-                <div id="likesContainer"></div>
+            <div class="reactions">
+              <div class="likes">
+                <button type ="button" class="btnLike"><img src="imagenes/heart.png" class="imgOptionsDots" class="imgOptionsDots"></button>
+                <div class="likesContainer"></div>
               </div>
             </div>
             
@@ -146,16 +145,16 @@ export const viewFeed = (user) => {
           };
 
           // ----------------------------BOTÓN DAR LIKE---------------------------->
-          const btnLike = document.querySelector('#btnLike');
+          const btnLike = document.querySelector('.btnLike');
           btnLike.addEventListener('click', () => {
             postLike(doc.id);
           });
 
-          const reaction = feedMessages.querySelector('#reactions');
-          const likesContainer = reaction.querySelector('#likesContainer');
+          const reaction = feedMessages.querySelector('.reactions');
+          const likesContainer = reaction.querySelector('.likesContainer');
           console.log(doc.data().like);
           likesContainer.innerHTML = `
-              <span id="likesNumber">${(doc.data().like).length}</span>`;
+              <span class="likesNumber">${(doc.data().like).length}</span>`;
 
           reaction.appendChild(likesContainer);
 
@@ -232,14 +231,22 @@ export const viewFeed = (user) => {
           const postItem = `
           <div id="containerPublication">
             <div class="textBoxStyle">  
-            <span class="namePublication">${doc.data().name}</span>
-            <span>${doc.data().email}</span>
-            <span>${doc.data().date}</span>
+              <span class="namePublication">${doc.data().name}</span>
+              <span>${doc.data().email}</span>
+              <span>${doc.data().date}</span>
+            </div>
             <div class="edit">
               <span type="text">${doc.data().text}</span>
             </div> 
-          </div>
-        </div>`;
+
+            <div class="reactions">
+              <div class="likes">
+                <button type ="button" class="btnLike"><img src="imagenes/heart.png" class="imgOptionsDots" class="imgOptionsDots"></button>
+                <div class="likesContainer"></div>
+              </div>
+            </div>
+          
+          </div>`;
 
           const containerPost = document.createElement('div');
           containerPost.classList.add('containerPost');
