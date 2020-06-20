@@ -1,3 +1,4 @@
+// ------------404 NOT FOUND---------------------->
 export const viewError = () => {
   const viewErrorContainer = document.getElementById('container');
   viewErrorContainer.innerHTML = `

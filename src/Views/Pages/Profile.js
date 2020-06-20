@@ -4,22 +4,24 @@ import { viewFooter } from '../Components/Footer.js';
 export const viewProfile = () => {
   const viewProfileContainer = document.getElementById('page_container');
   const user = firebase.auth().currentUser;
-  const infoUser = firebase.firestore().collection('InfoDePerfil').doc();
   viewProfileContainer.innerHTML = `
     <div id="containerPageProfile">
       <div id="containerProfile">
         <div id="containerDescriptionUsername">
             <p id="nameProfile">${user.displayName || user.email}</p>
-            <label for="description"><b>Descripción:</b></label>
-            <span id="profileDescription"></span>
-            <div id="toAdd">${infoUser.description}</div>
-            <label for="mail"><b>Mail de contacto:</b></label>
+            <label id="description" for="description"><b>Descripción:</b></label>
+            <span id="profileDescription">Hola, mi nombre es ${user.displayName || user.email},
+            soy de la comuna de Valparaíso, soy asesora del hogar y amante de los animales. Colaboro
+            con mis vecinos con el cuidado de sus mascotas cuando ellos se tienen que ausentar por alguna
+            razón.</span>
+            <div id="toAdd"></div>
+            <label id="mail" for="mail"><b>Mail de contacto:</b></label>
             <span class="profileMail">${user.email}</span>
             <label for="age"><b>Edad:</b></label>
-            <span id="profileAge"></span>
+            <span id="profileAge">30 años</span>
             <div id="toAdd1"></div>
             <label for="location"><b>De donde eres:</b></label>
-            <span id="profileLocation"></span>
+            <span id="profileLocation">Valparaíso</span>
             <div id="toAdd2"></div>
         </div>
         <div id="containerImgAndButton">
@@ -60,7 +62,7 @@ export const viewProfile = () => {
     });
   };
 
-  // ----------------------------BOTÓN EDDITAR POST---------------------------->
+  // ----------------------------BOTÓN EDITAR POST---------------------------->
   const editProfile = document.querySelector('#editProfile');
   editProfile.addEventListener('click', (doc) => {
     const result = window.confirm('¿Quieres editar tu perfil?');
@@ -69,9 +71,5 @@ export const viewProfile = () => {
     }
   });
 
-  /* const containerImgAndButton = document.querySelector('#containerImgAndButton');
-  containerImgAndButton.innerHTML = `
-    <img class="imgProfile" src="https://rciminternet.com/wp-content/uploads/2019/04/usuario.png">`;
-*/
   return viewProfileContainer;
 };

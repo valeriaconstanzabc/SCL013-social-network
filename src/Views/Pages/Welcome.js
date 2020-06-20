@@ -1,6 +1,7 @@
 import { viewHeader } from '../Components/Header.js';
 import { viewFooter } from '../Components/Footer.js';
 
+// ------------VISTA BIENVENIDA---------------------->
 export const viewWelcome = () => {
   const pageContainer = document.getElementById('page_container');
   pageContainer.innerHTML = `

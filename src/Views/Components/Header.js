@@ -1,3 +1,4 @@
+// ---------------TOP NAV BAR BIENVENIDA, REGISTRAR E INICIAR SESION------------------->
 export const viewHeader = () => {
   const headerContainer = document.getElementById('header_container');
   headerContainer.innerHTML = `
@@ -17,6 +18,7 @@ export const viewHeader = () => {
   return headerContainer;
 };
 
+// ------------TOP NAV BAR MURO---------------------->
 export const viewHeaderFeed = () => {
   const headerContainer = document.getElementById('header_container');
   const user = firebase.auth().currentUser;

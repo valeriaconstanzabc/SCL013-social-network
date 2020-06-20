@@ -1,4 +1,4 @@
-//  import { viewSignIn } from '../Views/Pages/SignIn.js';
+// --------------REGISTRAR Y LOGIN CON GOOGLE--------------------------->
 
 export const login = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -26,6 +26,7 @@ export const login = () => {
   });
 };
 
+// --------------REGISTRAR Y LOGIN CON FACEBOOK--------------------------->
 export const loginFacebook = () => {
   const provider = new firebase.auth.FacebookAuthProvider();
 

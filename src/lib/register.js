@@ -1,6 +1,7 @@
 import { viewFeed } from '../Views/Pages/Feed.js';
 import { viewLoginError, viewSignInError, viewRedirecting } from '../Views/Components/Others.js';
 
+// --------------FUNCIÓN ENVÍO CORREO VERIFICACIÓN--------------------------->
 export const verificate = () => {
   const user = firebase.auth().currentUser;
 
@@ -11,7 +12,7 @@ export const verificate = () => {
     // An error happened.
   });
 };
-
+// --------------REGISTRAR CON USUARIO Y CONTRASEÑA--------------------------->
 export const register = (userDetails) => {
   firebase.auth().createUserWithEmailAndPassword(userDetails.email, userDetails.password)
     .then(cred => firebase.firestore().collection('Usuarios').doc(cred.user.uid).set({
@@ -30,23 +31,7 @@ export const register = (userDetails) => {
       viewSignInError();
     });
 };
-
-/* export const register = (email, password, name) => {
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then(result => {
-      result.user.updateProfile({
-        displayName: name,
-      });
-      console.log('nombre y comuna guardados con el registro');
-      verificate();
-      viewRedirecting();
-    })
-    .catch((error) => {
-      console.log(error);
-      viewSignInError();
-    });
-}; */
-
+// --------------LOGIN CON USUARIO Y CONTRASEÑA--------------------------->
 export const logIn = (emailLogin, passwordLogin) => {
   firebase.auth().signInWithEmailAndPassword(emailLogin, passwordLogin)
     .catch(() => {
@@ -54,6 +39,7 @@ export const logIn = (emailLogin, passwordLogin) => {
     });
 };
 
+// --------------OBSERVADOR DE USUARIO LOGEADO--------------------------->
 export const observer = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -70,6 +56,7 @@ export const observer = () => {
 };
 observer();
 
+// --------------FUNCIÓN CERRAR SESIÓN--------------------------->
 export const closing = () => {
   firebase.auth().signOut()
     .then(() => {

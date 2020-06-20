@@ -1,3 +1,4 @@
+// ------------FOOTER---------------------->
 export const viewFooter = () => {
   const footerContainer = document.getElementById('footer_container');
   footerContainer.innerHTML = `

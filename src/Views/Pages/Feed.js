@@ -32,9 +32,9 @@ export const viewFeed = (user) => {
   const textPublication = pageContainer.querySelector('#textPublication');
   const buttonCancel = pageContainer.querySelector('#btnCancel');
 
-  buttonCancel.addEventListener('click', (event) => {
+  buttonCancel.addEventListener('click', () => {
     // eslint-disable-next-line no-param-reassign
-    event.textPublication.value = '';
+    textPublication.value = '';
   });
 
   publicationFeed.addEventListener('submit', (event) => {
@@ -64,7 +64,7 @@ export const viewFeed = (user) => {
           const containerPublication = `
           <div id="containerPublication">
             <div id="containerNameAndEdit">
-              <span class="namePublication">${doc.data().displayName || doc.data().email}</span>
+              <span class="namePublication">${doc.data().name || doc.data().email}</span>
               <div id="crudContainer">
                 <button type ="button" id="btnCrudOptions"><img src="imagenes/dots1.png" alt="" class="imgOptionsDots" id="imgOptionsDots"></button>
                 <div class="dropdownContentEdit">
@@ -85,7 +85,7 @@ export const viewFeed = (user) => {
 
             <div class="reactions">
               <div class="likes">
-                <button type ="button" class="btnLike-${doc.uid}"><img src="imagenes/heart.png" class="imgOptionsDots" class="imgOptionsDots"></button>
+                <button type ="button" class="btnLike"><img src="imagenes/heart.png" class="imgOptionsDots" class="imgOptionsDots"></button>
                 <div class="likesContainer"></div>
               </div>
             </div>
@@ -97,7 +97,7 @@ export const viewFeed = (user) => {
           feedMessages.appendChild(containerPost);
 
           // ----------------------------BOTÓN DAR LIKE---------------------------->
-          const btnLike = document.querySelector(`.btnLike-${doc.uid}`);
+          const btnLike = document.querySelector('.btnLike');
           btnLike.addEventListener('click', () => {
             postLike(doc.id);
           });
@@ -151,7 +151,7 @@ export const viewFeed = (user) => {
             };
           };
 
-          // ----------------------------BOTÓN EDDITAR POST---------------------------->
+          // ----------------------------BOTÓN EDITAR POST---------------------------->
           const buttonEdit = containerPost.querySelector('.editCrud');
           buttonEdit.addEventListener('click', () => {
             const result = window.confirm('¿Quieres editar este mensaje?');
@@ -172,7 +172,7 @@ export const viewFeed = (user) => {
           const postItem = `
           <div id="containerPublication">
             <div class="textBoxStyle">  
-              <span class="namePublication">${doc.data().name}</span>
+              <span class="namePublication">${doc.data().displayName || doc.data().email}</span>
               <span>${doc.data().email}</span>
               <span>${doc.data().date}</span>
             </div>
