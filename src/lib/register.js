@@ -16,11 +16,18 @@ export const verificate = () => {
 // --------------REGISTRAR CON USUARIO Y CONTRASEÑA--------------------------->
 export const register = (userDetails) => {
   firebase.auth().createUserWithEmailAndPassword(userDetails.email, userDetails.password)
-    .then(cred => firebase.firestore().collection('Usuarios').doc(cred.user.uid).set({
-      name: userDetails.name,
-      district: userDetails.district,
-      email: userDetails.email,
-    }))
+    .then((cred) => {
+      if (cred) {
+        cred.user.updateProfile({ // Usamos el mismo cred para actualizar el perfil con update
+          displayName: userDetails.name, // Actualizamos name con nombre ingresado en el formulario
+        }).then();
+      }
+      firebase.firestore().collection('Usuarios').doc(cred.user.uid).set({
+        name: userDetails.name,
+        district: userDetails.district,
+        email: userDetails.email,
+      });
+    })
     .then(() => {
       console.log('nombre y comuna guardados con el registro');
       console.log('ver si se puede pushear', userDetails.name);

@@ -77,8 +77,8 @@ export const viewFeed = (user) => {
 
             <div class="reactions">
               <div class="likes">
-                <button type ="button" class="btnLike"><img src="imagenes/heart.png" class="imgOptionsDots" class="imgOptionsDots"></button>
-                <div class="likesContainer"></div>
+                <button type ="button" class="btnLike" data-id=${doc.id}><img src="imagenes/heart.png" class="imgOptionsDots" class="imgOptionsDots"></button>
+                <div class="likesContainer" data-likes=${doc.data().like.length}></div>
               </div>
             </div>
             
@@ -87,20 +87,6 @@ export const viewFeed = (user) => {
           const containerPost = document.createElement('div');
           containerPost.innerHTML = containerPublication;
           feedMessages.appendChild(containerPost);
-
-          // <----------------------------BOTÓN DAR LIKE---------------------------->
-          const btnLike = document.querySelector('.btnLike');
-          btnLike.addEventListener('click', () => {
-            postLike(doc.id);
-          });
-
-          const reaction = feedMessages.querySelector('.reactions');
-          const likesContainer = reaction.querySelector('.likesContainer');
-          console.log(doc.data().like);
-          likesContainer.innerHTML = `
-              <span class="likesNumber">${(doc.data().like).length}</span>`;
-
-          reaction.appendChild(likesContainer);
 
           // <----------------------------FUNCIÓN EDITAR POST---------------------------->
           const editPost = (uid) => {
@@ -174,7 +160,7 @@ export const viewFeed = (user) => {
 
             <div class="reactions">
               <div class="likes">
-                <button type ="button" class="btnLike"><img src="imagenes/heart.png" class="imgOptionsDots" class="imgOptionsDots"></button>
+                <button type ="button" class="btnLike" data-id=${doc.id}><img src="imagenes/heart.png" class="imgOptionsDots" class="imgOptionsDots"></button>
                 <div class="likesContainer"></div>
               </div>
             </div>
@@ -188,8 +174,28 @@ export const viewFeed = (user) => {
           feedMessages.appendChild(containerPost);
         }
       });
-    });
+      // <----------------------------BOTÓN DAR LIKE---------------------------->
+      // sacamos el botón fuera del if para que tome ambos post
+      const btnLike = document.getElementsByClassName('btnLike'); // llamamos al boton mediante getElementsByClassName
+      for (let i = 0; i < btnLike.length; i += 1) { // recorremos un for del botón
+        // Guardamos la posición del botón y con dataset traemos la propiedad data de la linea 80
+        const id = btnLike[i].dataset.id;
+        btnLike[i].addEventListener('click', () => { // Evento del botón pero con posición i
+          postLike(id);
+        });
+      }
 
+      // Después hacemos lo mismo pero con el div de las reacciones
+      const reaction = document.getElementsByClassName('reactions');
+      for (let i = 0; i < reaction.length; i += 1) {
+        const likesContainer = reaction[i].querySelector('.likesContainer');
+        const likes1 = likesContainer.dataset.likes;
+        likesContainer.innerHTML = `
+         <span class="likesNumber">${likes1}</span>`;
+
+        reaction[i].appendChild(likesContainer);
+      }
+    });
   // eslint-disable-next-line consistent-return
   return pageContainer;
 };
