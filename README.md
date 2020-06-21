@@ -31,7 +31,7 @@
 ¡Y eso es lo que somos! Una comunidad para averiguar todas aquellas cosas que no sabemos, aquellas cosas que buscamos y no encontramos. ¡Ayuda y conexión constante con tu ciudad y las almas que viven en ella! 
 
 
-Para visitar y conocer **Lofche**, haz click [**aquí**](lofche-5e070.web.app).
+Para visitar y conocer **Lofche**, haz click [**aquí**](https://lofche-5e070.web.app/)..
 
 ## 2. Producto
 
