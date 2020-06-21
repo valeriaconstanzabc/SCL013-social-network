@@ -153,27 +153,7 @@ Para visitar el detalle de los resultados de los testeos de usabilidad haz click
 ![Diagrama 2](http://imgfz.com/i/8tiv3YF.jpeg)
 ## 7. Boilerplate
 Este proyecto se desarrolló con tecnologías web con los siguientes lenguajes: HTML5, CSS y Javascript (ES6). Siendo el último, el lenguaje más utilizado en este trabajo.  
-├src
-├─ Views
-│   ├── Components
-│   │   ├── Footer.js
-│   │   ├── Header.js
-│   │   └── Others.js
-│   └── Pages
-│       ├── 404.js
-│       ├── Feed.js
-│       ├── LogIn.js
-│       ├── Profile.js
-│       ├── SignIn.js
-│       └── Welcome.js
-├── imagenes
-├── index.html
-├── lib
-│   ├── firebase-functions.js
-│   ├── register.js
-│   └── router.js
-├── main.js
-└── style.css
+![Boilerplate](http://imgfz.com/i/qd1t8WU.png)
 
 ## 8. Aspectos a mejorar 
 **Funcionales**
