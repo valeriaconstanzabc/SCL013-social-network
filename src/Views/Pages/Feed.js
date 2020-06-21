@@ -32,30 +32,22 @@ export const viewFeed = (user) => {
   const textPublication = pageContainer.querySelector('#textPublication');
   const buttonCancel = pageContainer.querySelector('#btnCancel');
 
+  // <-----------LIMPIA EL IMPUT DE LA PUBLICACIÓN AL CANCELAR------------->
   buttonCancel.addEventListener('click', () => {
-    // eslint-disable-next-line no-param-reassign
     textPublication.value = '';
   });
 
+  // <-----------LIEMPIA EL IMPUT DE LA PUBLICACIÓN LUEGO DE CREAR UNA----->
   publicationFeed.addEventListener('submit', (event) => {
     event.preventDefault();
-
     if (!textPublication.value.trim()) {
       return;
     }
     addPostsData(user, textPublication);
-
     textPublication.value = '';
   });
 
-  firebase.firestore().collection('Usuarios').where('email', '==', `${user.email}`)
-    .onSnapshot((querySnapshot) => {
-      console.log('Aqui casi trayendo el nombre', querySnapshot);
-      querySnapshot.forEach(() => {
-      });
-    });
-
-
+  // <-----------IMPRIMOS COMENTARIOS EN LA PÁGINA ORDENADOS POR FECHA------>
   firebase.firestore().collection('Publicaciones').orderBy('date', 'desc')
     .onSnapshot((query) => {
       feedMessages.innerHTML = '';
@@ -96,7 +88,7 @@ export const viewFeed = (user) => {
           containerPost.innerHTML = containerPublication;
           feedMessages.appendChild(containerPost);
 
-          // ----------------------------BOTÓN DAR LIKE---------------------------->
+          // <----------------------------BOTÓN DAR LIKE---------------------------->
           const btnLike = document.querySelector('.btnLike');
           btnLike.addEventListener('click', () => {
             postLike(doc.id);
@@ -110,7 +102,7 @@ export const viewFeed = (user) => {
 
           reaction.appendChild(likesContainer);
 
-          // ----------------------------FUNCION EDITAR POST---------------------------->
+          // <----------------------------FUNCIÓN EDITAR POST---------------------------->
           const editPost = (uid) => {
             const currentText = containerPost.querySelector('#currentText');
             currentText.style.display = 'none';

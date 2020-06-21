@@ -12,6 +12,7 @@ export const verificate = () => {
     // An error happened.
   });
 };
+
 // --------------REGISTRAR CON USUARIO Y CONTRASEÑA--------------------------->
 export const register = (userDetails) => {
   firebase.auth().createUserWithEmailAndPassword(userDetails.email, userDetails.password)
@@ -31,6 +32,7 @@ export const register = (userDetails) => {
       viewSignInError();
     });
 };
+
 // --------------LOGIN CON USUARIO Y CONTRASEÑA--------------------------->
 export const logIn = (emailLogin, passwordLogin) => {
   firebase.auth().signInWithEmailAndPassword(emailLogin, passwordLogin)

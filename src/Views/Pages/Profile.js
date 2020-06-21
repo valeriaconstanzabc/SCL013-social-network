@@ -17,10 +17,10 @@ export const viewProfile = () => {
             <div id="toAdd"></div>
             <label id="mail" for="mail"><b>Mail de contacto:</b></label>
             <span class="profileMail">${user.email}</span>
-            <label for="age"><b>Edad:</b></label>
+            <label id="age" for="age"><b>Edad:</b></label>
             <span id="profileAge">30 años</span>
             <div id="toAdd1"></div>
-            <label for="location"><b>De donde eres:</b></label>
+            <label id="location" for="location"><b>De donde eres:</b></label>
             <span id="profileLocation">Valparaíso</span>
             <div id="toAdd2"></div>
         </div>

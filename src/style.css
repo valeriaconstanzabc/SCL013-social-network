@@ -512,7 +512,7 @@
             #btnPublish, #btnCancel, #buttonSave, #cancelEditCrud{
             font-family: 'Actor', sans-serif;
             color:white;
-            width: 110px;
+            width: 105px;
             height: 30px;
             border: 3px;
             background: #4080FF;
@@ -537,6 +537,16 @@
         display: flex;
         flex-direction: column;
         align-items: flex-end;
+
+        -webkit-order: 0;
+        -ms-flex-order: 0;
+        order: 0;
+        -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        -webkit-align-self: auto;
+        -ms-flex-item-align: auto;
+        align-self: auto;
     }
         #btnCrudOptions{
             border: 0px;
@@ -580,6 +590,16 @@
             .namePublication{
                 font-size: 24px;
                 margin-bottom: 10px;
+
+                -webkit-order: 0;
+                -ms-flex-order: 0;
+                order: 0;
+                -webkit-flex: 1 1 auto;
+                -ms-flex: 1 1 auto;
+                flex: 1 1 auto;
+                -webkit-align-self: auto;
+                -ms-flex-item-align: auto;
+                align-self: auto; 
             }
             .edit{
                 display: flex;
@@ -737,8 +757,8 @@
     #containerProfile{
         display: flex;
         padding: 30px;
-        height: 600px;
-        width: 800px;
+        height: 570px;
+        width: 720px;
         margin: 120px 40px 40px 40px;
         font-family: 'Comfortaa', cursive;
         color: #24255E;
@@ -750,29 +770,47 @@
     }
         #containerDescriptionUsername{
             display: flex;
-            flex-direction: column;
+            flex-direction: column;   
             width: 180px;
-                
+            
+            -webkit-order: 0;
+            -ms-flex-order: 0;
+            order: 0;
+            -webkit-flex: 1 1 auto;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            -webkit-align-self: auto;
+            -ms-flex-item-align: auto;
+            align-self: auto;           
         }
             #nameProfile{
                 font-size: 32px;
                 padding-bottom: 20px;
                 
             }
-            #description, #mail {
+            #description, #mail, #age, #location{
                 padding-bottom: 10px;
                 font-size: 20px;
             }
-            #profileDescription {
+            #profileDescription, #profileAge, .profileMail {
                 padding-bottom: 20px;
-                width: inherit;
             }
     #containerImgAndButton{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: flex-end;
-        margin-top: 10px;
+        margin: 10px 0px 10px 15px;
+
+        -webkit-order: 0;
+        -ms-flex-order: 0;
+        order: 0;
+        -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        -webkit-align-self: auto;
+        -ms-flex-item-align: auto;
+        align-self: auto;
     }
         #imgProfile{
             width: 80px;

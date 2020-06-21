@@ -1,5 +1,4 @@
 // --------------REGISTRAR Y LOGIN CON GOOGLE--------------------------->
-
 export const login = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
 
