@@ -150,7 +150,7 @@ export const viewFeed = (user) => {
           const postItem = `
           <div id="containerPublication">
             <div class="textBoxStyle">  
-              <span class="namePublication">${doc.data().displayName || doc.data().email}</span>
+              <span class="namePublication">${doc.data().name}</span>
               <span>${doc.data().email}</span>
               <span>${doc.data().date}</span>
             </div>
@@ -161,7 +161,7 @@ export const viewFeed = (user) => {
             <div class="reactions">
               <div class="likes">
                 <button type ="button" class="btnLike" data-id=${doc.id}><img src="imagenes/heart.png" class="imgOptionsDots" class="imgOptionsDots"></button>
-                <div class="likesContainer"></div>
+                <div class="likesContainer" data-likes=${doc.data().like.length}></div>
               </div>
             </div>
           
